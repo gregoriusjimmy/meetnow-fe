@@ -1,8 +1,9 @@
 import { Image, StyleSheet, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import GpsImage from "@assets/gps-with-circle.png";
-import CText from "@components/atoms/CText";
 import { colors, spacing } from "@src/theme";
+import { CText } from "@components/atoms/CText";
+import { Button } from "@components/atoms/Button";
 
 export function EnableLocationScreen() {
   return (
@@ -12,13 +13,18 @@ export function EnableLocationScreen() {
         colors={[colors.brand.primaryLight, colors.brand.primaryDark]}
         style={styles.background}
       />
-      <Image source={GpsImage} style={styles.image} />
-      <CText style={styles.title} variant='h3Bold'>
-        Enable Location
-      </CText>
-      <CText style={styles.subtitle} variant='subtitle'>
-        You’ll need to enable location in order to use Meetnow
-      </CText>
+      <View style={styles.content}>
+        <Image source={GpsImage} style={styles.image} />
+        <CText color='light' variant='h3Bold'>
+          Enable Location
+        </CText>
+        <CText color='light' style={styles.subtitle} variant='subtitle'>
+          You’ll need to enable location in order to use Meetnow
+        </CText>
+      </View>
+      <Button variant='white' size='l' fullWidth>
+        ALLOW LOCATION
+      </Button>
     </View>
   );
 }
@@ -26,8 +32,10 @@ export function EnableLocationScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: spacing.l,
+    justifyContent: "flex-end",
+    paddingHorizontal: spacing[24],
     alignItems: "center",
+    paddingBottom: spacing[40],
   },
   background: {
     position: "absolute",
@@ -36,7 +44,11 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
   },
-  title: { color: colors.base.white },
-  subtitle: { color: colors.base.white, textAlign: "center" },
-  image: { resizeMode: "contain", width: "30%", height: "30%" },
+  content: { width: "100%", alignItems: "center" },
+  subtitle: {
+    textAlign: "center",
+    marginTop: spacing[12],
+    marginBottom: spacing[40],
+  },
+  image: { resizeMode: "contain", width: "50%", height: "50%" },
 });

@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import { StyleSheet, Text, TextProps } from "react-native";
+import { colors } from "./../../theme";
 
 interface Props extends TextProps {
   children: string;
@@ -21,12 +22,20 @@ interface Props extends TextProps {
     | "h5Bold"
     | "paragraph"
     | "subtitle";
+  color: "light" | "dark";
 }
 
-const CText = forwardRef<Text, Props>(
-  ({ style, variant, children, ...otherProps }, ref) => {
+export const CText = forwardRef<Text, Props>(
+  (
+    { style, variant = "subtitle", color = "dark", children, ...otherProps },
+    ref
+  ) => {
     return (
-      <Text ref={ref} style={[styles[variant], style]} {...otherProps}>
+      <Text
+        ref={ref}
+        style={[styles[variant], styles[color], style]}
+        {...otherProps}
+      >
         {children}
       </Text>
     );
@@ -103,6 +112,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 187.5,
   },
+  light: {
+    color: colors.base.white,
+  },
+  dark: {
+    color: colors.base.black,
+  },
 });
-
-export default CText;

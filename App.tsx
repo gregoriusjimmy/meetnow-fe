@@ -3,6 +3,7 @@ import {
   Poppins_400Regular,
   Poppins_500Medium,
   Poppins_700Bold,
+  Poppins_600SemiBold,
 } from "@expo-google-fonts/poppins";
 import { useEffect } from "react";
 import { AppNavigator } from "./src/AppNavigator";
@@ -17,6 +18,7 @@ export default function App() {
     Poppins_400Regular,
     Poppins_500Medium,
     Poppins_700Bold,
+    Poppins_600SemiBold,
   });
 
   useEffect(() => {
