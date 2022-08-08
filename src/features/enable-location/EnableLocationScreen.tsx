@@ -1,6 +1,6 @@
 import { Image, StyleSheet, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import GpsImage from "@assets/gps-with-circle.png";
+import GpsImage from "@assets/images/gps-with-circle.png";
 import { colors, spacing } from "@src/theme";
 import { CText } from "@components/atoms/CText";
 import { Button } from "@components/atoms/Button";
@@ -47,8 +47,12 @@ const styles = StyleSheet.create({
   content: { width: "100%", alignItems: "center" },
   subtitle: {
     textAlign: "center",
-    marginTop: spacing[12],
-    marginBottom: spacing[40],
+    marginTop: spacing[8],
   },
-  image: { resizeMode: "contain", width: "50%", height: "50%" },
+  image: {
+    resizeMode: "contain",
+    width: "50%",
+    height: "50%",
+    marginBottom: spacing[24],
+  },
 });

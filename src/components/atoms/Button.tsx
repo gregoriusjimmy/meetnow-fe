@@ -58,7 +58,7 @@ export const Button = forwardRef<TouchableOpacity, Props>(
 );
 const stylesText = StyleSheet.create({
   base: {
-    fontFamily: "Poppins_600SemiBold",
+    fontFamily: "Poppins-Semibold",
     textAlign: "center",
   },
   s: {
