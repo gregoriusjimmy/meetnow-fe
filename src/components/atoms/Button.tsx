@@ -1,4 +1,5 @@
-import { forwardRef } from "react";
+import { colors, spacing } from '@src/theme';
+import { forwardRef } from 'react';
 import {
   TouchableOpacityProps,
   TouchableOpacity,
@@ -6,22 +7,27 @@ import {
   Text,
   StyleProp,
   TextStyle,
-} from "react-native";
-import { colors, spacing } from "@src/theme";
+  View,
+} from 'react-native';
 
 interface Props extends TouchableOpacityProps {
-  size?: "s" | "m" | "l";
-  variant?: "primary" | "secondary" | "white";
+  size?: 's' | 'm' | 'l';
+  variant?: 'primary' | 'secondary' | 'white';
+  children: string;
   fullWidth?: boolean;
   textStyle?: StyleProp<TextStyle>;
+  icon?: JSX.Element;
+  iconPosition?: 'left' | 'right';
 }
 
 export const Button = forwardRef<TouchableOpacity, Props>(
   (
     {
-      size = "m",
-      variant = "white",
+      size = 'm',
+      variant = 'white',
       fullWidth = false,
+      iconPosition = 'left',
+      icon,
       style,
       children,
       textStyle,
@@ -40,35 +46,38 @@ export const Button = forwardRef<TouchableOpacity, Props>(
           style,
         ]}
         activeOpacity={0.8}
-        {...otherProps}
-      >
-        <Text
-          style={[
-            stylesText.base,
-            stylesText[variant],
-            stylesText[size],
-            textStyle,
-          ]}
-        >
+        {...otherProps}>
+        {iconPosition === 'left' && icon && <View style={stylesBtn.iconLeft}>{icon}</View>}
+        <Text style={[stylesText.base, stylesText[variant], stylesText[size], textStyle]}>
           {children}
         </Text>
+        {iconPosition === 'right' && icon && <View style={stylesBtn.iconRight}>{icon}</View>}
       </TouchableOpacity>
     );
   }
 );
+
+export const BUTTON = {
+  fontSize: {
+    s: 12,
+    m: 14,
+    l: 16,
+  },
+};
+
 const stylesText = StyleSheet.create({
   base: {
-    fontFamily: "Poppins-Semibold",
-    textAlign: "center",
+    fontFamily: 'Poppins-Semibold',
+    textAlign: 'center',
   },
   s: {
-    fontSize: 12,
+    fontSize: BUTTON.fontSize.s,
   },
   m: {
-    fontSize: 14,
+    fontSize: BUTTON.fontSize.m,
   },
   l: {
-    fontSize: 16,
+    fontSize: BUTTON.fontSize.l,
   },
   primary: {
     color: colors.base.white,
@@ -86,6 +95,9 @@ const stylesBtn = StyleSheet.create({
     elevation: 4,
     borderRadius: spacing[24],
     paddingVertical: spacing[12],
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    justifyContent: 'center',
   },
   s: {
     paddingHorizontal: spacing[24],
@@ -106,6 +118,12 @@ const stylesBtn = StyleSheet.create({
     backgroundColor: colors.base.white,
   },
   fullWidth: {
-    alignSelf: "stretch",
+    alignSelf: 'stretch',
+  },
+  iconLeft: {
+    marginRight: spacing[8],
+  },
+  iconRight: {
+    marginLeft: spacing[8],
   },
 });
