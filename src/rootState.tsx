@@ -1,3 +1,6 @@
+import { PermissionStatus } from 'expo-location';
 import { atom } from 'jotai';
 
-const permission = atom({});
+type TPermissionLocationAtom = PermissionStatus | null;
+
+export const permissionLocationAtom = atom<TPermissionLocationAtom>(null);

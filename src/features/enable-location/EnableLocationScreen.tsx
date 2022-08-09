@@ -1,30 +1,40 @@
-import { Image, StyleSheet, View } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import GpsImage from "@assets/images/gps-with-circle.png";
-import { colors, spacing } from "@src/theme";
-import { CText } from "@components/atoms/CText";
-import { Button } from "@components/atoms/Button";
+import GpsImage from '@assets/images/gps-with-circle.png';
+import { Button } from '@components/atoms/Button';
+import { CText } from '@components/atoms/CText';
+import { LinearGradientBackground } from '@components/atoms/LinearGradientBackground';
+import { permissionLocationAtom } from '@src/rootState';
+import { spacing } from '@src/theme';
+import * as Location from 'expo-location';
+import { useSetAtom } from 'jotai';
+import { Image, StyleSheet, View } from 'react-native';
 
 export function EnableLocationScreen() {
+  const setPermissionLocation = useSetAtom(permissionLocationAtom);
+
+  const handleBtnPress = async () => {
+    const { status } = await Location.requestForegroundPermissionsAsync();
+    if (status === Location.PermissionStatus.GRANTED) {
+      setPermissionLocation(Location.PermissionStatus.GRANTED);
+    }
+    // TODO: handle double reject canAskAgain = false
+  };
+
   return (
     <View style={styles.container}>
-      <LinearGradient
-        locations={[0.15, 0.83]}
-        colors={[colors.brand.primaryLight, colors.brand.primaryDark]}
-        style={styles.background}
-      />
+      <LinearGradientBackground />
+      <Image source={GpsImage} style={styles.image} />
       <View style={styles.content}>
-        <Image source={GpsImage} style={styles.image} />
-        <CText color='light' variant='h3Bold'>
+        <CText color="light" variant="h3Bold">
           Enable Location
         </CText>
-        <CText color='light' style={styles.subtitle} variant='subtitle'>
+        <CText color="light" style={styles.subtitle} variant="subtitle">
           You’ll need to enable location in order to use Meetnow
         </CText>
+        <Button variant="white" size="l" fullWidth onPress={handleBtnPress}>
+          ALLOW LOCATION
+        </Button>
+        {/* TODO: add learn more button to show modal */}
       </View>
-      <Button variant='white' size='l' fullWidth>
-        ALLOW LOCATION
-      </Button>
     </View>
   );
 }
@@ -32,27 +42,19 @@ export function EnableLocationScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-end",
-    paddingHorizontal: spacing[24],
-    alignItems: "center",
+    paddingHorizontal: spacing.layout,
     paddingBottom: spacing[40],
+    alignItems: 'center',
   },
-  background: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-  },
-  content: { width: "100%", alignItems: "center" },
+  content: { alignSelf: 'stretch', alignItems: 'center' },
   subtitle: {
-    textAlign: "center",
+    textAlign: 'center',
     marginTop: spacing[8],
+    marginBottom: spacing[24],
   },
   image: {
-    resizeMode: "contain",
-    width: "50%",
-    height: "50%",
-    marginBottom: spacing[24],
+    resizeMode: 'contain',
+    width: '50%',
+    height: '70%',
   },
 });
