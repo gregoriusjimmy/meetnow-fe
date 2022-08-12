@@ -20,9 +20,9 @@ interface Props extends TextProps {
     | 'h3Bold'
     | 'h4Bold'
     | 'h5Bold'
-    | 'paragraph'
+    | 'p'
     | 'subtitle';
-  color: 'light' | 'dark';
+  color?: 'light' | 'dark';
 }
 
 export const CText = forwardRef<Text, Props>(
@@ -34,6 +34,24 @@ export const CText = forwardRef<Text, Props>(
     );
   }
 );
+
+export const CTEXT = {
+  fontFamily: {
+    regular: 'Poppins-Regular',
+    medium: 'Poppins-Medium',
+    semiBold: 'Poppins-Semibold',
+    bold: 'Poppins-Bold',
+  },
+  fontSize: {
+    h1: 38,
+    h2: 30,
+    h3: 24,
+    h4: 20,
+    h5: 18,
+    subtitle: 16,
+    p: 14,
+  },
+};
 
 const styles = StyleSheet.create({
   h1: {
@@ -100,7 +118,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
     fontSize: 16,
   },
-  paragraph: {
+  p: {
     fontFamily: 'Poppins-Regular',
     fontSize: 14,
     lineHeight: 187.5,

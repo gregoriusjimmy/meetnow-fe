@@ -5,6 +5,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useSetAtom } from 'jotai';
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { AppNavigator } from './AppNavigator';
 import { permissionLocationAtom } from './rootState';
@@ -48,7 +49,9 @@ function App() {
 
   return (
     <View style={styles.wrapper} onLayout={onLayoutRootView}>
-      <AppNavigator />
+      <SafeAreaProvider>
+        <AppNavigator />
+      </SafeAreaProvider>
     </View>
   );
 }
