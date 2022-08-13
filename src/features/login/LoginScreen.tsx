@@ -39,16 +39,11 @@ export function LoginScreen() {
           style={styles.firstBtn}
           variant="white"
           size="l"
-          fullWidth
           onPress={signInWithGoogle}
           icon={<FontAwesome5 name="google" size={BUTTON.fontSize.l} />}>
           Sign in with google
         </Button>
-        <Button
-          variant="white"
-          size="l"
-          onPress={() => navigation.navigate('InputPhoneNumber')}
-          fullWidth>
+        <Button variant="white" size="l" onPress={() => navigation.navigate('InputPhoneNumber')}>
           Sign in with phone number
         </Button>
       </View>

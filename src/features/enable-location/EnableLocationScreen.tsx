@@ -30,7 +30,7 @@ export function EnableLocationScreen() {
         <CText color="light" style={styles.subtitle} variant="subtitle">
           You’ll need to enable location in order to use Meetnow
         </CText>
-        <Button variant="white" size="l" fullWidth onPress={handleBtnPress}>
+        <Button variant="white" size="l" onPress={handleBtnPress}>
           ALLOW LOCATION
         </Button>
         {/* TODO: add learn more button to show modal */}

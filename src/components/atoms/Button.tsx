@@ -25,7 +25,7 @@ export const Button = forwardRef<TouchableOpacity, Props>(
     {
       size = 'm',
       variant = 'white',
-      fullWidth = false,
+      fullWidth = true,
       iconPosition = 'left',
       icon,
       style,
