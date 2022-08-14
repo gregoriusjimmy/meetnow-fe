@@ -8,12 +8,15 @@ import { StyleSheet, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { AppNavigator } from './AppNavigator';
+import { useAuth } from './hooks/useAuth';
 import { permissionLocationAtom } from './rootState';
 
 SplashScreen.preventAutoHideAsync();
 
 function App() {
   const setPermissionLocation = useSetAtom(permissionLocationAtom);
+  const { authStateChangedListener } = useAuth();
+
   const [appIsReady, setAppIsReady] = useState(false);
   const [fontsLoaded] = useFonts({
     'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
@@ -22,6 +25,7 @@ function App() {
     'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
   });
 
+  useEffect(() => authStateChangedListener(), []);
   useEffect(() => {
     async function prepare() {
       try {
