@@ -27,6 +27,7 @@ export const Button = forwardRef<TouchableOpacity, Props>(
       variant = 'white',
       fullWidth = true,
       iconPosition = 'left',
+      disabled,
       icon,
       style,
       children,
@@ -42,6 +43,7 @@ export const Button = forwardRef<TouchableOpacity, Props>(
           stylesBtn.base,
           stylesBtn[size],
           stylesBtn[variant],
+          disabled && stylesBtn.disabled,
           fullWidth && stylesBtn.fullWidth,
           style,
         ]}
@@ -98,6 +100,10 @@ const stylesBtn = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'baseline',
     justifyContent: 'center',
+  },
+  disabled: {
+    backgroundColor: colors.base.lightGray,
+    elevation: 0,
   },
   s: {
     paddingHorizontal: spacing[24],

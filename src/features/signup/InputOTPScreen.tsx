@@ -13,23 +13,29 @@ type TInputOTPScreenNavigationProp = NativeStackNavigationProp<
   'InputPhoneNumber'
 >;
 
-export function InputPhoneNumberScreen() {
+export function InputOTPScreen() {
   const navigation = useNavigation<TInputOTPScreenNavigationProp>();
 
   return (
     <SafeAreaView style={styles.container}>
       <CText style={styles.title} variant="h2Medium">
-        Input your phone number
+        Enter code
       </CText>
+      <View style={styles.resendContainer}>
+        <CText variant="subtitle" style={styles.phoneNumber}>
+          +6289392838
+        </CText>
+        <Button variant="primary" size="s">
+          Resend
+        </Button>
+      </View>
       <View style={styles.content}>
-        <InputField
-          editable={false}
-          value={'+62'}
-          style={styles.firstInput}
-          width={'16%'}
-          keyboardType="number-pad"
-        />
-        <InputField width={'50%'} keyboardType="number-pad" maxLength={14} />
+        <InputField textCenter width={'10%'} keyboardType="numeric" maxLength={1} />
+        <InputField textCenter width={'10%'} keyboardType="numeric" maxLength={1} />
+        <InputField textCenter width={'10%'} keyboardType="numeric" maxLength={1} />
+        <InputField textCenter width={'10%'} keyboardType="numeric" maxLength={1} />
+        <InputField textCenter width={'10%'} keyboardType="numeric" maxLength={1} />
+        <InputField textCenter width={'10%'} keyboardType="numeric" maxLength={1} />
       </View>
       <Button
         style={styles.btn}
@@ -48,17 +54,23 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.layout,
     paddingTop: spacing[40] * 2,
   },
+  resendContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: spacing[56],
+  },
+  phoneNumber: {
+    marginRight: spacing[8],
+  },
   content: {
     width: '100%',
     flexDirection: 'row',
-  },
-  firstInput: {
-    marginRight: spacing[16],
+    justifyContent: 'space-around',
   },
   btn: {
     marginTop: spacing[56],
   },
   title: {
-    marginBottom: spacing[56],
+    marginBottom: spacing[12],
   },
 });

@@ -2,11 +2,17 @@ import FullLogo from '@assets/images/meetnow-full-logo-with-slogan.png';
 import { BUTTON, Button } from '@components/atoms/Button';
 import { LinearGradientBackground } from '@components/atoms/LinearGradientBackground';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { TRootStackParamList } from '@src/AppNavigator';
 import { useAuth } from '@src/hooks/useAuth';
 import { spacing } from '@src/theme';
 import { Image, StyleSheet, View } from 'react-native';
 
+type TLoginScreenNavigationProp = NativeStackNavigationProp<TRootStackParamList, 'Login'>;
+
 export function LoginScreen() {
+  const navigation = useNavigation<TLoginScreenNavigationProp>();
   const { signInWithGoogle, request } = useAuth();
 
   return (
@@ -23,9 +29,9 @@ export function LoginScreen() {
           icon={<FontAwesome5 name="google" size={BUTTON.fontSize.l} />}>
           Sign in with google
         </Button>
-        {/* <Button variant="white" size="l" onPress={() => navigation.navigate('InputPhoneNumber')}>
+        <Button variant="white" size="l" onPress={() => navigation.navigate('InputPhoneNumber')}>
           Sign in with phone number
-        </Button> */}
+        </Button>
       </View>
     </View>
   );
@@ -39,8 +45,7 @@ const styles = StyleSheet.create({
   },
   image: {
     resizeMode: 'contain',
-    height: '80%',
-    // TODO: change height back to 70% if sign in with number implemented
+    height: '70%',
   },
   buttons: {
     alignSelf: 'stretch',

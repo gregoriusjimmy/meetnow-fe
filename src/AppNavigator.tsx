@@ -6,14 +6,17 @@ import { useAtomValue } from 'jotai';
 
 import { LoadingScreen } from './components/screens/LoadingScreen';
 import { EnableLocationScreen } from './features/enable-location/EnableLocationScreen';
+import { InputOTPScreen } from './features/signup/InputOTPScreen';
 import { InputPhoneNumberScreen } from './features/signup/InputPhoneNumberScreen';
 import { isLoadingAuthAtom, permissionLocationAtom, userAtom } from './rootState';
 
 export type TRootStackParamList = {
   Login: undefined;
   EnableLocation: undefined;
-  InputPhoneNumber: undefined;
   Loading: undefined;
+  InputPhoneNumber: undefined;
+  InputOTP: undefined;
+  InputName: undefined;
 };
 
 const Stack = createNativeStackNavigator<TRootStackParamList>();
@@ -39,15 +42,15 @@ export const AppNavigator = () => {
             <Stack.Screen name="Login" component={LoginScreen} />
           )}
         </Stack.Group>
-        {user && (
-          <Stack.Group
-            screenOptions={{
-              headerTransparent: true,
-              headerTitle: '',
-            }}>
-            <Stack.Screen name="InputPhoneNumber" component={InputPhoneNumberScreen} />
-          </Stack.Group>
-        )}
+        <Stack.Group
+          screenOptions={{
+            headerTransparent: true,
+            headerTitle: '',
+          }}>
+          {/* TODO: handle cannot go back to input phone number if otp already verified */}
+          <Stack.Screen name="InputPhoneNumber" component={InputPhoneNumberScreen} />
+          <Stack.Screen name="InputOTP" component={InputOTPScreen} />
+        </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
   );
