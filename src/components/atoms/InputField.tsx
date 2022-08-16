@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     fontSize: CTEXT.fontSize.h4,
     fontFamily: CTEXT.fontFamily.regular,
     color: colors.base.black,
+    borderColor: colors.base.gray,
   },
   focus: {
     borderColor: colors.brand.primary,

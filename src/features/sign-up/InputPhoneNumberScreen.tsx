@@ -6,7 +6,8 @@ import { CText } from '@src/components/atoms/CText';
 import { InputField } from '@src/components/atoms/InputField';
 import { spacing } from '@src/theme';
 import { StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { SignUpContainer } from './UISignUp';
 
 type TInputOTPScreenNavigationProp = NativeStackNavigationProp<
   TRootStackParamList,
@@ -17,7 +18,7 @@ export function InputPhoneNumberScreen() {
   const navigation = useNavigation<TInputOTPScreenNavigationProp>();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SignUpContainer>
       <CText style={styles.title} variant="h2Medium">
         Input your phone number
       </CText>
@@ -29,7 +30,13 @@ export function InputPhoneNumberScreen() {
           width={'16%'}
           keyboardType="number-pad"
         />
-        <InputField width={'50%'} keyboardType="number-pad" maxLength={14} />
+        <InputField
+          autoFocus
+          width={'50%'}
+          keyboardType="number-pad"
+          autoComplete="tel"
+          maxLength={14}
+        />
       </View>
       <Button
         style={styles.btn}
@@ -38,16 +45,11 @@ export function InputPhoneNumberScreen() {
         onPress={() => navigation.push('InputOTP')}>
         Continue
       </Button>
-    </SafeAreaView>
+    </SignUpContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: spacing.layout,
-    paddingTop: spacing[40] * 2,
-  },
   content: {
     width: '100%',
     flexDirection: 'row',

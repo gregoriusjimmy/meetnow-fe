@@ -12,7 +12,7 @@ import {
 
 interface Props extends TouchableOpacityProps {
   size?: 's' | 'm' | 'l';
-  variant?: 'primary' | 'secondary' | 'white';
+  variant?: 'primary' | 'secondary' | 'white' | 'primary-outline';
   children: string;
   fullWidth?: boolean;
   textStyle?: StyleProp<TextStyle>;
@@ -84,6 +84,9 @@ const stylesText = StyleSheet.create({
   primary: {
     color: colors.base.white,
   },
+  'primary-outline': {
+    color: colors.brand.primary,
+  },
   secondary: {
     color: colors.base.white,
   },
@@ -116,6 +119,12 @@ const stylesBtn = StyleSheet.create({
   },
   primary: {
     backgroundColor: colors.brand.primary,
+  },
+  'primary-outline': {
+    borderColor: colors.brand.primary,
+    borderWidth: 1,
+    backgroundColor: colors.base.white,
+    elevation: 1,
   },
   secondary: {
     backgroundColor: colors.brand.secondary,

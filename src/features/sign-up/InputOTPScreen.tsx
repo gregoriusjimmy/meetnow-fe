@@ -3,10 +3,11 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TRootStackParamList } from '@src/AppNavigator';
 import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
-import { InputField } from '@src/components/atoms/InputField';
 import { spacing } from '@src/theme';
+import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { OTPInput, SignUpContainer } from './UISignUp';
 
 type TInputOTPScreenNavigationProp = NativeStackNavigationProp<
   TRootStackParamList,
@@ -15,9 +16,18 @@ type TInputOTPScreenNavigationProp = NativeStackNavigationProp<
 
 export function InputOTPScreen() {
   const navigation = useNavigation<TInputOTPScreenNavigationProp>();
+  const [code, setCode] = useState('');
+  const [isComplete, setIsComplete] = useState(false);
+  const CODE_LENGTH = 6;
+
+  const handleChangeCode = (val: string) => {
+    setCode(val);
+    if (val.length === CODE_LENGTH) setIsComplete(true);
+    else setIsComplete(false);
+  };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SignUpContainer>
       <CText style={styles.title} variant="h2Medium">
         Enter code
       </CText>
@@ -25,35 +35,24 @@ export function InputOTPScreen() {
         <CText variant="subtitle" style={styles.phoneNumber}>
           +6289392838
         </CText>
-        <Button variant="primary" size="s">
+        <Button variant="primary-outline" size="s">
           Resend
         </Button>
       </View>
-      <View style={styles.content}>
-        <InputField textCenter width={'10%'} keyboardType="numeric" maxLength={1} />
-        <InputField textCenter width={'10%'} keyboardType="numeric" maxLength={1} />
-        <InputField textCenter width={'10%'} keyboardType="numeric" maxLength={1} />
-        <InputField textCenter width={'10%'} keyboardType="numeric" maxLength={1} />
-        <InputField textCenter width={'10%'} keyboardType="numeric" maxLength={1} />
-        <InputField textCenter width={'10%'} keyboardType="numeric" maxLength={1} />
-      </View>
+      <OTPInput code={code} maximumLength={CODE_LENGTH} onChangeCode={handleChangeCode} />
       <Button
+        disabled={!isComplete}
         style={styles.btn}
         variant="primary"
         size="l"
-        onPress={() => navigation.push('InputOTP')}>
+        onPress={() => navigation.push('InputName')}>
         Continue
       </Button>
-    </SafeAreaView>
+    </SignUpContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: spacing.layout,
-    paddingTop: spacing[40] * 2,
-  },
   resendContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -61,11 +60,6 @@ const styles = StyleSheet.create({
   },
   phoneNumber: {
     marginRight: spacing[8],
-  },
-  content: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
   },
   btn: {
     marginTop: spacing[56],
