@@ -32,6 +32,7 @@ export function InputPhoneNumberScreen() {
         />
         <InputField
           autoFocus
+          placeholder="Phone Number"
           width={'50%'}
           keyboardType="number-pad"
           autoComplete="tel"

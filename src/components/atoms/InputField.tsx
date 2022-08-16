@@ -24,7 +24,7 @@ export const InputField = forwardRef<TextInput, Props>(
           textCenter && styles.textCenter,
           style,
         ]}
-        selectionColor={colors.base.black}
+        selectionColor={colors.brand.primary}
         {...otherProps}
       />
     );
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   base: {
     borderBottomWidth: 1,
     paddingHorizontal: spacing[4],
+    paddingBottom: spacing[4],
     fontSize: CTEXT.fontSize.h4,
     fontFamily: CTEXT.fontFamily.regular,
     color: colors.base.black,
