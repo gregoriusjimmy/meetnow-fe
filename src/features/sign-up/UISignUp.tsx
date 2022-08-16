@@ -9,6 +9,14 @@ export function SignUpContainer({ children, style }: { children: ReactNode; styl
   return <SafeAreaView style={[styles.container, style]}>{children}</SafeAreaView>;
 }
 
+export function SignUpStepper({ currentStep }: { currentStep: number }) {
+  return (
+    <CText style={{ alignSelf: 'flex-end' }} variant="subtitle">
+      {`${currentStep}/2`}
+    </CText>
+  );
+}
+
 export const OTPInput = ({
   code,
   onChangeCode,
@@ -93,5 +101,8 @@ const styles = StyleSheet.create({
   textInputHidden: {
     position: 'absolute',
     opacity: 0,
+  },
+  signUpStepper: {
+    alignSelf: 'flex-end',
   },
 });
