@@ -12,7 +12,7 @@ import {
 
 interface Props extends TouchableOpacityProps {
   size?: 's' | 'm' | 'l';
-  variant?: 'primary' | 'secondary' | 'white' | 'primary-outline';
+  variant?: 'primary' | 'secondary' | 'white' | 'primary-outline' | 'secondary-outline';
   children: string;
   fullWidth?: boolean;
   textStyle?: StyleProp<TextStyle>;
@@ -41,6 +41,7 @@ export const Button = forwardRef<TouchableOpacity, Props>(
         ref={ref}
         style={[
           stylesBtn.base,
+          variant.includes('outline') && stylesBtn.baseOutline,
           stylesBtn[size],
           stylesBtn[variant],
           disabled && stylesBtn.disabled,
@@ -48,6 +49,7 @@ export const Button = forwardRef<TouchableOpacity, Props>(
           style,
         ]}
         activeOpacity={0.8}
+        disabled={disabled}
         {...otherProps}>
         {iconPosition === 'left' && icon && <View style={stylesBtn.iconLeft}>{icon}</View>}
         <Text style={[stylesText.base, stylesText[variant], stylesText[size], textStyle]}>
@@ -87,6 +89,9 @@ const stylesText = StyleSheet.create({
   'primary-outline': {
     color: colors.brand.primary,
   },
+  'secondary-outline': {
+    color: colors.brand.secondary,
+  },
   secondary: {
     color: colors.base.white,
   },
@@ -103,6 +108,11 @@ const stylesBtn = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'baseline',
     justifyContent: 'center',
+  },
+  baseOutline: {
+    borderWidth: 1,
+    elevation: 1,
+    backgroundColor: colors.base.white,
   },
   disabled: {
     backgroundColor: colors.base.lightGray,
@@ -122,9 +132,9 @@ const stylesBtn = StyleSheet.create({
   },
   'primary-outline': {
     borderColor: colors.brand.primary,
-    borderWidth: 1,
-    backgroundColor: colors.base.white,
-    elevation: 1,
+  },
+  'secondary-outline': {
+    borderColor: colors.brand.secondary,
   },
   secondary: {
     backgroundColor: colors.brand.secondary,
