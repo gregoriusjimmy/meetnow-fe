@@ -23,7 +23,7 @@ interface Props extends TouchableOpacityProps {
 export const Button = forwardRef<TouchableOpacity, Props>(
   (
     {
-      size = 'm',
+      size = 'l',
       variant = 'white',
       fullWidth = true,
       iconPosition = 'left',
