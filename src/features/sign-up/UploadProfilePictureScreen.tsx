@@ -51,16 +51,7 @@ export function UploadProfilePictureScreen() {
 
   const renderProfilePicture = () => {
     return image ? (
-      <Image
-        source={{ uri: image }}
-        style={{
-          width: 200,
-          height: 200,
-          borderRadius: 200,
-          borderWidth: spacing[4],
-          borderColor: colors.brand.primary,
-        }}
-      />
+      <Image source={{ uri: image }} style={styles.profileImage} />
     ) : (
       <ProfilePicture />
     );
@@ -106,4 +97,8 @@ const styles = StyleSheet.create({
   },
   actions: { marginTop: spacing[48] },
   openCamBtn: { marginBottom: spacing[16] },
+  profileImage: {
+    width: 200,
+    height: 200,
+  },
 });
