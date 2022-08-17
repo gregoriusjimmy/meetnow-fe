@@ -1,8 +1,8 @@
-import { PermissionStatus } from 'expo-location';
+import * as Location from 'expo-location';
 import { User } from 'firebase/auth';
 import { atom } from 'jotai';
 
-type TPermissionLocationAtom = PermissionStatus | null;
+type TPermissionLocationAtom = Location.PermissionStatus | null;
 
 export const permissionLocationAtom = atom<TPermissionLocationAtom>(null);
 
