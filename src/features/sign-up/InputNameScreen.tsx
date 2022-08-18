@@ -5,16 +5,42 @@ import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
 import { InputField } from '@src/components/atoms/InputField';
 import { spacing } from '@src/theme';
-import { useRef } from 'react';
+import { useAtom } from 'jotai';
+import { useRef, useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 
 import { SignUpContainer, SignUpStepper } from './UISignUp';
+import { firstNameAtom, lastNameAtom } from './atoms';
 
 type TInputNameScreenNavigationProp = NativeStackNavigationProp<TRootStackParamList, 'InputName'>;
 
 export function InputNameScreen() {
   const navigation = useNavigation<TInputNameScreenNavigationProp>();
   const lastNameInputRef = useRef<TextInput>(null);
+  const [firstName, setFirstName] = useAtom(firstNameAtom);
+  const [lastName, setLastName] = useAtom(lastNameAtom);
+  const [errorFirstName, setErrorFirstName] = useState('');
+
+  const handleChangeFirstName = (val: string) => {
+    if (/[\s\d\W]/.test(val)) return;
+    setFirstName(val);
+  };
+
+  const handleChangeLastName = (val: string) => {
+    if (/[\s\d\W]/.test(val)) return;
+    setLastName(val);
+  };
+
+  const handlePressContinue = () => {
+    if (firstName.length < 3) {
+      setErrorFirstName(`First name cannot less than 3 characters`);
+      return;
+    }
+    setErrorFirstName('');
+    setFirstName(firstName.charAt(0).toUpperCase() + firstName.slice(1));
+    setLastName(lastName.charAt(0).toUpperCase() + lastName.slice(1));
+    navigation.push('InputNickname');
+  };
 
   return (
     <SignUpContainer>
@@ -22,6 +48,8 @@ export function InputNameScreen() {
       <CText variant="h2Medium">What is your name?</CText>
       <View style={styles.content}>
         <InputField
+          value={firstName}
+          onChangeText={handleChangeFirstName}
           autoFocus
           style={styles.firstNameInput}
           placeholder="First Name"
@@ -29,10 +57,22 @@ export function InputNameScreen() {
           blurOnSubmit={false}
           maxLength={20}
           autoComplete={'name-prefix'}
+          error={errorFirstName}
         />
-        <InputField ref={lastNameInputRef} placeholder="Last Name" autoComplete={'name-suffix'} />
+
+        <InputField
+          ref={lastNameInputRef}
+          value={lastName}
+          onChangeText={handleChangeLastName}
+          placeholder="Last Name"
+          autoComplete={'name-suffix'}
+        />
       </View>
-      <Button variant="primary" size="l" onPress={() => navigation.push('InputNickname')}>
+      <Button
+        disabled={!firstName || !lastName}
+        variant="primary"
+        size="l"
+        onPress={handlePressContinue}>
         Continue
       </Button>
     </SignUpContainer>
