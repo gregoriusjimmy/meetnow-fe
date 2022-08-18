@@ -1,9 +1,11 @@
 import { useFocusEffect } from '@react-navigation/native';
 import { CText } from '@src/components/atoms/CText';
 import { colors, spacing } from '@src/theme';
-import { ReactNode, useCallback, useLayoutEffect, useRef, useState } from 'react';
+import { ReactNode, useCallback, useRef, useState } from 'react';
 import { Pressable, StyleSheet, TextInput, View, ViewStyle } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+const TOTAL_SIGN_UP_STEP = 5;
 
 export function SignUpContainer({ children, style }: { children: ReactNode; style?: ViewStyle }) {
   return <SafeAreaView style={[styles.container, style]}>{children}</SafeAreaView>;
@@ -12,7 +14,7 @@ export function SignUpContainer({ children, style }: { children: ReactNode; styl
 export function SignUpStepper({ currentStep }: { currentStep: number }) {
   return (
     <CText style={{ alignSelf: 'flex-end' }} variant="subtitle">
-      {`${currentStep}/2`}
+      {`${currentStep}/${TOTAL_SIGN_UP_STEP}`}
     </CText>
   );
 }
