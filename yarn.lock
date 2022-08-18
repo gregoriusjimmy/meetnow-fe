@@ -6644,6 +6644,11 @@ open@^8.0.4, open@^8.3.0:
     is-docker "^2.1.1"
     is-wsl "^2.2.0"
 
+optics-ts@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/optics-ts/-/optics-ts-2.3.0.tgz#5478da5a2ec46550093dfadd15d6bd87d957e925"
+  integrity sha512-iu6//uEMAKsowlq7hd8pNTc43KOjxMPW60BBA8DIt0q311iiOaWPilMHGOyCDvQ7llRutwlCkGX6e4HnUD0ARg==
+
 optionator@^0.9.1:
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/optionator/-/optionator-0.9.1.tgz#4f236a6373dae0566a6d43e1326674f50c291499"
