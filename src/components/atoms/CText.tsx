@@ -4,7 +4,7 @@ import { StyleSheet, Text, TextProps } from 'react-native';
 
 interface Props extends TextProps {
   children: string;
-  variant:
+  variant?:
     | 'h1'
     | 'h2'
     | 'h3'
@@ -21,8 +21,9 @@ interface Props extends TextProps {
     | 'h4Bold'
     | 'h5Bold'
     | 'p'
-    | 'subtitle';
-  color?: 'light' | 'dark';
+    | 'subtitle'
+    | 'caption';
+  color?: 'light' | 'dark' | 'error';
 }
 
 export const CText = forwardRef<Text, Props>(
@@ -50,6 +51,7 @@ export const CTEXT = {
     h5: 18,
     subtitle: 16,
     p: 14,
+    caption: 14,
   },
 };
 
@@ -121,12 +123,18 @@ const styles = StyleSheet.create({
   p: {
     fontFamily: 'Poppins-Regular',
     fontSize: 14,
-    lineHeight: 187.5,
+  },
+  caption: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 14,
   },
   light: {
     color: colors.base.white,
   },
   dark: {
     color: colors.base.black,
+  },
+  error: {
+    color: 'red',
   },
 });
