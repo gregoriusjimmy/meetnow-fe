@@ -15,7 +15,7 @@ interface Props extends TouchableOpacityProps {
   variant?: 'primary' | 'secondary' | 'white' | 'primary-outline' | 'secondary-outline';
   children: string;
   fullWidth?: boolean;
-  textStyle?: StyleProp<TextStyle>;
+  styleText?: StyleProp<TextStyle>;
   icon?: JSX.Element;
   iconPosition?: 'left' | 'right';
 }
@@ -31,7 +31,7 @@ export const Button = forwardRef<TouchableOpacity, Props>(
       icon,
       style,
       children,
-      textStyle,
+      styleText,
       ...otherProps
     },
     ref
@@ -52,7 +52,7 @@ export const Button = forwardRef<TouchableOpacity, Props>(
         disabled={disabled}
         {...otherProps}>
         {iconPosition === 'left' && icon && <View style={stylesBtn.iconLeft}>{icon}</View>}
-        <Text style={[stylesText.base, stylesText[variant], stylesText[size], textStyle]}>
+        <Text style={[stylesText.base, stylesText[variant], stylesText[size], styleText]}>
           {children}
         </Text>
         {iconPosition === 'right' && icon && <View style={stylesBtn.iconRight}>{icon}</View>}
@@ -96,7 +96,7 @@ const stylesText = StyleSheet.create({
     color: colors.base.white,
   },
   white: {
-    color: colors.base.black,
+    color: colors.base.darkGray,
   },
 });
 
