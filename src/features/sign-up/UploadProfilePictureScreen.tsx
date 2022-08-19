@@ -4,7 +4,7 @@ import { TRootStackParamList } from '@src/AppNavigator';
 import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
 import ProfilePicture from '@src/components/icons/ProfilePicture';
-import { colors, spacing } from '@src/theme';
+import { spacing } from '@src/theme';
 import * as ImagePicker from 'expo-image-picker';
 import { useState } from 'react';
 import { Image, StyleSheet, View } from 'react-native';

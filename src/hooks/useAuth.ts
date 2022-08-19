@@ -21,9 +21,9 @@ export const useAuth = () => {
 
   const firebaseAuth = getAuth();
   const [request, , promptAsync] = Google.useIdTokenAuthRequest({
-    // expoClientId: '346786182080-07vgpfu3rorbiv9rn03l1csm7evvpg8r.apps.googleusercontent.com',
-    // iosClientId: '346786182080-1t5323qfge5l0hmbsj2e20rd38ce3p4g.apps.googleusercontent.com',
-    // androidClientId: '346786182080-n40fov4fid2s1gmb69834j1dk5tqtda6.apps.googleusercontent.com',
+    expoClientId: '346786182080-07vgpfu3rorbiv9rn03l1csm7evvpg8r.apps.googleusercontent.com',
+    iosClientId: '346786182080-1t5323qfge5l0hmbsj2e20rd38ce3p4g.apps.googleusercontent.com',
+    androidClientId: '346786182080-n40fov4fid2s1gmb69834j1dk5tqtda6.apps.googleusercontent.com',
     clientId: '374289093868-g46ji4a4hgsogg8gp8v6tpp1so39t5cd.apps.googleusercontent.com',
   });
 

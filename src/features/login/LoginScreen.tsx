@@ -23,13 +23,13 @@ export function LoginScreen() {
         <Button
           disabled={!request}
           style={styles.firstBtn}
-          variant="white"
+          variant="neutral"
           size="l"
           onPress={signInWithGoogle}
           icon={<FontAwesome5 name="google" size={BUTTON.fontSize.l} />}>
           Sign in with google
         </Button>
-        <Button variant="white" size="l" onPress={() => navigation.navigate('InputPhoneNumber')}>
+        <Button variant="neutral" size="l" onPress={() => navigation.navigate('InputPhoneNumber')}>
           Sign in with phone number
         </Button>
       </View>
@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   firstBtn: {
-    marginBottom: spacing[18],
+    marginBottom: spacing[16],
   },
 });

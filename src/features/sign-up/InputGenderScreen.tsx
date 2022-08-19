@@ -3,13 +3,12 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TRootStackParamList } from '@src/AppNavigator';
 import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
-import { InputField } from '@src/components/atoms/InputField';
 import { spacing } from '@src/theme';
 import { useAtom } from 'jotai';
 import { StyleSheet, View } from 'react-native';
-import { genderAtom } from './atoms';
 
 import { SignUpContainer, SignUpStepper } from './UISignUp';
+import { genderAtom } from './atoms';
 
 type TInputGenderScreenNavigationProp = NativeStackNavigationProp<
   TRootStackParamList,
