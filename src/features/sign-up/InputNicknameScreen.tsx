@@ -37,7 +37,7 @@ export function InputNicknameScreen() {
       return;
     }
     setErrorNickname('');
-    navigation.push('InputBirthday');
+    navigation.push('InputBirthDate');
   };
 
   return (

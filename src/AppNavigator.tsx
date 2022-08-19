@@ -6,7 +6,7 @@ import { useAtomValue } from 'jotai';
 
 import { LoadingScreen } from './components/screens/LoadingScreen';
 import { EnableLocationScreen } from './features/enable-location/EnableLocationScreen';
-import { InputBirthdayScreen } from './features/sign-up/InputBirthdayScreen';
+import { InputBirthDateScreen } from './features/sign-up/InputBirthDateScreen';
 import { InputGenderScreen } from './features/sign-up/InputGenderScreen';
 import { InputNameScreen } from './features/sign-up/InputNameScreen';
 import { InputNicknameScreen } from './features/sign-up/InputNicknameScreen';
@@ -23,7 +23,7 @@ export type TRootStackParamList = {
   InputOTP: undefined;
   InputName: undefined;
   InputNickname: undefined;
-  InputBirthday: undefined;
+  InputBirthDate: undefined;
   InputGender: undefined;
   UploadProfilePicture: undefined;
 };
@@ -61,7 +61,7 @@ export const AppNavigator = () => {
           <Stack.Screen name="InputOTP" component={InputOTPScreen} />
           <Stack.Screen name="InputName" component={InputNameScreen} />
           <Stack.Screen name="InputNickname" component={InputNicknameScreen} />
-          <Stack.Screen name="InputBirthday" component={InputBirthdayScreen} />
+          <Stack.Screen name="InputBirthDate" component={InputBirthDateScreen} />
           <Stack.Screen name="InputGender" component={InputGenderScreen} />
           <Stack.Screen name="UploadProfilePicture" component={UploadProfilePictureScreen} />
         </Stack.Group>
