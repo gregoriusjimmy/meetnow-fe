@@ -5,7 +5,9 @@ import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
 import { InputField } from '@src/components/atoms/InputField';
 import { spacing } from '@src/theme';
+import { useAtom } from 'jotai';
 import { StyleSheet, View } from 'react-native';
+import { genderAtom } from './atoms';
 
 import { SignUpContainer, SignUpStepper } from './UISignUp';
 
@@ -16,6 +18,11 @@ type TInputGenderScreenNavigationProp = NativeStackNavigationProp<
 
 export function InputGenderScreen() {
   const navigation = useNavigation<TInputGenderScreenNavigationProp>();
+  const [gender, setGender] = useAtom(genderAtom);
+
+  const handlePressContinue = () => {
+    navigation.push('UploadProfilePicture');
+  };
 
   return (
     <SignUpContainer>
@@ -24,18 +31,21 @@ export function InputGenderScreen() {
       <View style={styles.content}>
         <Button
           style={styles.firstBtn}
-          variant="primary-outline"
+          variant={gender === 'male' ? 'primary-outline' : 'neutral-outline'}
           size="l"
-          onPress={() => navigation.push('UploadProfilePicture')}>
+          onPress={() => setGender('male')}>
           I'm a Male
         </Button>
         <Button
-          variant="secondary-outline"
+          variant={gender === 'female' ? 'secondary-outline' : 'neutral-outline'}
           size="l"
-          onPress={() => navigation.push('UploadProfilePicture')}>
+          onPress={() => setGender('female')}>
           I'm a Female
         </Button>
       </View>
+      <Button disabled={!gender} variant="primary" size="l" onPress={handlePressContinue}>
+        Continue
+      </Button>
     </SignUpContainer>
   );
 }
@@ -43,7 +53,7 @@ export function InputGenderScreen() {
 const styles = StyleSheet.create({
   content: {
     justifyContent: 'center',
-    flex: 0.8,
+    flex: 0.9,
   },
   firstBtn: {
     marginBottom: spacing[16],
