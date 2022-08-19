@@ -12,7 +12,13 @@ import {
 
 interface Props extends TouchableOpacityProps {
   size?: 's' | 'm' | 'l';
-  variant?: 'primary' | 'secondary' | 'white' | 'primary-outline' | 'secondary-outline';
+  variant?:
+    | 'primary'
+    | 'secondary'
+    | 'neutral'
+    | 'primary-outline'
+    | 'secondary-outline'
+    | 'neutral-outline';
   children: string;
   fullWidth?: boolean;
   styleText?: StyleProp<TextStyle>;
@@ -24,7 +30,7 @@ export const Button = forwardRef<TouchableOpacity, Props>(
   (
     {
       size = 'l',
-      variant = 'white',
+      variant = 'neutral',
       fullWidth = true,
       iconPosition = 'left',
       disabled,
@@ -92,10 +98,13 @@ const stylesText = StyleSheet.create({
   'secondary-outline': {
     color: colors.brand.secondary,
   },
+  'neutral-outline': {
+    color: colors.base.gray,
+  },
   secondary: {
     color: colors.base.white,
   },
-  white: {
+  neutral: {
     color: colors.base.darkGray,
   },
 });
@@ -136,10 +145,13 @@ const stylesBtn = StyleSheet.create({
   'secondary-outline': {
     borderColor: colors.brand.secondary,
   },
+  'neutral-outline': {
+    borderColor: colors.base.lightGray,
+  },
   secondary: {
     backgroundColor: colors.brand.secondary,
   },
-  white: {
+  neutral: {
     backgroundColor: colors.base.white,
   },
   fullWidth: {
