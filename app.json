@@ -3,7 +3,7 @@
     "name": "meetnow",
     "slug": "meetnow",
     "scheme": "meetnow",
-    "owner": "gregoriusjimmy",
+    "owner": "meetnow",
     "version": "1.0.0",
     "jsEngine": "hermes",
     "orientation": "portrait",
@@ -15,7 +15,8 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/8694a218-93fe-4cb6-81ba-1c98ad27fafb"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
@@ -32,6 +33,9 @@
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
-    "plugins": [["expo-image-picker"]]
+    "plugins": [["expo-image-picker"]],
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    }
   }
 }
