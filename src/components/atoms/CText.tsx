@@ -57,76 +57,76 @@ export const CTEXT = {
 
 const styles = StyleSheet.create({
   h1: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: 38,
+    fontFamily: CTEXT.fontFamily.regular,
+    fontSize: CTEXT.fontSize.h1,
   },
   h2: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: 30,
+    fontFamily: CTEXT.fontFamily.regular,
+    fontSize: CTEXT.fontSize.h2,
   },
   h3: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: 24,
+    fontFamily: CTEXT.fontFamily.regular,
+    fontSize: CTEXT.fontSize.h3,
   },
   h4: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: 20,
+    fontFamily: CTEXT.fontFamily.regular,
+    fontSize: CTEXT.fontSize.h4,
   },
   h5: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: 18,
+    fontFamily: CTEXT.fontFamily.regular,
+    fontSize: CTEXT.fontSize.h5,
   },
   h1Medium: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: 38,
+    fontFamily: CTEXT.fontFamily.medium,
+    fontSize: CTEXT.fontSize.h1,
   },
   h2Medium: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: 30,
+    fontFamily: CTEXT.fontFamily.medium,
+    fontSize: CTEXT.fontSize.h2,
   },
   h3Medium: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: 24,
+    fontFamily: CTEXT.fontFamily.medium,
+    fontSize: CTEXT.fontSize.h3,
   },
   h4Medium: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: 20,
+    fontFamily: CTEXT.fontFamily.medium,
+    fontSize: CTEXT.fontSize.h4,
   },
   h5Medium: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: 18,
+    fontFamily: CTEXT.fontFamily.medium,
+    fontSize: CTEXT.fontSize.h5,
   },
   h1Bold: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 38,
+    fontFamily: CTEXT.fontFamily.bold,
+    fontSize: CTEXT.fontSize.h1,
   },
   h2Bold: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 30,
+    fontFamily: CTEXT.fontFamily.bold,
+    fontSize: CTEXT.fontSize.h2,
   },
   h3Bold: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 24,
+    fontFamily: CTEXT.fontFamily.bold,
+    fontSize: CTEXT.fontSize.h3,
   },
   h4Bold: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 20,
+    fontFamily: CTEXT.fontFamily.bold,
+    fontSize: CTEXT.fontSize.h4,
   },
   h5Bold: {
-    fontFamily: 'Poppins-Bold',
-    fontSize: 18,
+    fontFamily: CTEXT.fontFamily.bold,
+    fontSize: CTEXT.fontSize.h5,
   },
   subtitle: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: 16,
+    fontFamily: CTEXT.fontFamily.regular,
+    fontSize: CTEXT.fontSize.subtitle,
   },
   p: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: 14,
+    fontFamily: CTEXT.fontFamily.regular,
+    fontSize: CTEXT.fontSize.p,
   },
   caption: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: 14,
+    fontFamily: CTEXT.fontFamily.regular,
+    fontSize: CTEXT.fontSize.caption,
   },
   light: {
     color: colors.base.white,
