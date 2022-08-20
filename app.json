@@ -4,6 +4,8 @@
     "slug": "meetnow",
     "scheme": "meetnow",
     "owner": "meetnow",
+    "currentFullName": "meetnow/meetnow",
+    "originalFullName": "meetnow/meetnow",
     "version": "1.0.0",
     "jsEngine": "hermes",
     "orientation": "portrait",
