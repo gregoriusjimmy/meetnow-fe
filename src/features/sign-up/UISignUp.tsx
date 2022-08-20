@@ -1,6 +1,7 @@
 import { useFocusEffect } from '@react-navigation/native';
 import { CText } from '@src/components/atoms/CText';
 import { colors, spacing } from '@src/theme';
+import { verticalScale } from '@src/utils/scale';
 import { ReactNode, useCallback, useRef, useState } from 'react';
 import { Pressable, StyleSheet, TextInput, View, ViewStyle } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: spacing.layout,
-    paddingTop: spacing[40] * 2,
+    paddingTop: verticalScale(spacing[56]),
   },
   codeInputsContainer: {
     minHeight: spacing[32],
