@@ -33,7 +33,12 @@ export const OTPInput = ({
   const inputArray = new Array(maximumLength).fill(0);
   const inputRef = useRef<TextInput>(null);
 
-  useFocusEffect(useCallback(() => handleOnPress(), []));
+  useFocusEffect(
+    useCallback(() => {
+      handleOnPress();
+    }, [])
+  );
+
   const handleOnPress = () => {
     setIsInputFieldFocused(true);
     inputRef.current?.focus();
@@ -75,6 +80,7 @@ export const OTPInput = ({
         onChangeText={onChangeCode}
         maxLength={maximumLength}
         ref={inputRef}
+        keyboardType="numeric"
         onBlur={handleOnBlur}
         autoComplete={'sms-otp'}
       />
@@ -88,7 +94,7 @@ const styles = StyleSheet.create({
     paddingTop: verticalScale(spacing[56]),
   },
   codeInputsContainer: {
-    minHeight: spacing[32],
+    minHeight: spacing[36],
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-around',
