@@ -5,6 +5,7 @@ import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
 import ProfilePicture from '@src/components/icons/ProfilePicture';
 import { spacing } from '@src/theme';
+import { verticalScale } from '@src/utils/scale';
 import * as ImagePicker from 'expo-image-picker';
 import { useState } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
@@ -31,21 +32,17 @@ export function UploadProfilePictureScreen() {
 
   const handleOpenCamera = async () => {
     if (!statusCamera?.granted) await requestPermissionCamera();
-    if (statusCamera?.granted) {
-      const result = await ImagePicker.launchCameraAsync(IMAGE_PICKER_OPTIONS);
-      if (!result.cancelled) {
-        setImage(result.uri);
-      }
+    const result = await ImagePicker.launchCameraAsync(IMAGE_PICKER_OPTIONS);
+    if (!result.cancelled) {
+      setImage(result.uri);
     }
   };
 
   const handleOpenMediaLib = async () => {
     if (!statusMediaLib?.granted) await requestPermissionMediaLib();
-    if (statusMediaLib?.granted) {
-      const result = await ImagePicker.launchImageLibraryAsync(IMAGE_PICKER_OPTIONS);
-      if (!result.cancelled) {
-        setImage(result.uri);
-      }
+    const result = await ImagePicker.launchImageLibraryAsync(IMAGE_PICKER_OPTIONS);
+    if (!result.cancelled) {
+      setImage(result.uri);
     }
   };
 
@@ -89,17 +86,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 0.9,
   },
-  imagePicker: {
-    borderRadius: spacing[56],
-    width: 200,
-    height: 200,
-    backgroundColor: 'red',
-  },
-  actions: { marginTop: spacing[48] },
+  actions: { marginTop: verticalScale(spacing[40]), alignSelf: 'stretch' },
   openCamBtn: { marginBottom: spacing[16] },
   profileImage: {
-    width: 200,
-    height: 200,
-    borderRadius: 200,
+    width: verticalScale(160),
+    height: verticalScale(160),
+    borderRadius: verticalScale(160),
   },
 });
