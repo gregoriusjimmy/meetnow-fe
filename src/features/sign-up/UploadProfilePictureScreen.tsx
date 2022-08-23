@@ -56,7 +56,7 @@ export function UploadProfilePictureScreen() {
 
   return (
     <SignUpContainer>
-      <SignUpStepper currentStep={5} />
+      <SignUpStepper currentStep={7} />
       <CText variant="h2Medium">Upload your profile picture</CText>
       <View style={styles.content}>
         {renderProfilePicture()}

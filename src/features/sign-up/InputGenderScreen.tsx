@@ -20,7 +20,7 @@ export function InputGenderScreen() {
   const [gender, setGender] = useAtom(genderAtom);
 
   const handlePressContinue = () => {
-    navigation.push('UploadProfilePicture');
+    navigation.push('InputInstagramUsername');
   };
 
   return (

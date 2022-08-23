@@ -8,6 +8,8 @@ import { LoadingScreen } from './components/screens/LoadingScreen';
 import { EnableLocationScreen } from './features/enable-location/EnableLocationScreen';
 import { InputBirthDateScreen } from './features/sign-up/InputBirthDateScreen';
 import { InputGenderScreen } from './features/sign-up/InputGenderScreen';
+import { InputInstagramUsernameScreen } from './features/sign-up/InputInstagranUsername';
+import { InputInterestsScreen } from './features/sign-up/InputInterestScreen';
 import { InputNameScreen } from './features/sign-up/InputNameScreen';
 import { InputNicknameScreen } from './features/sign-up/InputNicknameScreen';
 import { InputOTPScreen } from './features/sign-up/InputOTPScreen';
@@ -25,6 +27,8 @@ export type TRootStackParamList = {
   InputNickname: undefined;
   InputBirthDate: undefined;
   InputGender: undefined;
+  InputInstagramUsername: undefined;
+  InputInterests: undefined;
   UploadProfilePicture: undefined;
 };
 
@@ -63,6 +67,8 @@ export const AppNavigator = () => {
           <Stack.Screen name="InputNickname" component={InputNicknameScreen} />
           <Stack.Screen name="InputBirthDate" component={InputBirthDateScreen} />
           <Stack.Screen name="InputGender" component={InputGenderScreen} />
+          <Stack.Screen name="InputInstagramUsername" component={InputInstagramUsernameScreen} />
+          <Stack.Screen name="InputInterests" component={InputInterestsScreen} />
           <Stack.Screen name="UploadProfilePicture" component={UploadProfilePictureScreen} />
         </Stack.Group>
       </Stack.Navigator>

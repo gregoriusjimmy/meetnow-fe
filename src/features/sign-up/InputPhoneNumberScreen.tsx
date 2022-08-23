@@ -5,9 +5,11 @@ import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
 import { InputField } from '@src/components/atoms/InputField';
 import { spacing } from '@src/theme';
+import { useAtom } from 'jotai';
 import { StyleSheet, View } from 'react-native';
 
 import { SignUpContainer } from './UISignUp';
+import { phoneNumberAtom } from './atoms';
 
 type TInputOTPScreenNavigationProp = NativeStackNavigationProp<
   TRootStackParamList,
@@ -16,6 +18,12 @@ type TInputOTPScreenNavigationProp = NativeStackNavigationProp<
 
 export function InputPhoneNumberScreen() {
   const navigation = useNavigation<TInputOTPScreenNavigationProp>();
+  const [phoneNumber, setPhoneNumber] = useAtom(phoneNumberAtom);
+
+  const handlePressContinue = () => {
+    setPhoneNumber('62' + phoneNumber);
+    navigation.push('InputOTP');
+  };
 
   return (
     <SignUpContainer>
@@ -32,18 +40,16 @@ export function InputPhoneNumberScreen() {
         />
         <InputField
           autoFocus
+          value={phoneNumber}
           placeholder="Phone Number"
-          width={'50%'}
+          style={styles.phoneNumber}
           keyboardType="number-pad"
           autoComplete="tel"
           maxLength={14}
+          onChangeText={(val) => setPhoneNumber(val)}
         />
       </View>
-      <Button
-        style={styles.btn}
-        variant="primary"
-        size="l"
-        onPress={() => navigation.push('InputOTP')}>
+      <Button style={styles.btn} variant="primary" size="l" onPress={handlePressContinue}>
         Continue
       </Button>
     </SignUpContainer>
@@ -58,6 +64,7 @@ const styles = StyleSheet.create({
   firstInput: {
     marginRight: spacing[16],
   },
+  phoneNumber: { flexGrow: 1 },
   btn: {
     marginTop: spacing[56],
   },
