@@ -11,6 +11,7 @@ import { StyleSheet, TextInput, View } from 'react-native';
 
 import { SignUpContainer, SignUpStepper } from './UISignUp';
 import { birthDateAtom } from './atoms';
+import { scale } from '@src/utils/scale';
 
 type TInputBirthDateScreenNavigationProp = NativeStackNavigationProp<
   TRootStackParamList,
@@ -93,7 +94,7 @@ export function InputBirthDateScreen() {
 
   const handlePressContinue = () => {
     // TODO: handle error under age
-    setBirthDate(new Date(`${year}-${month}-${day}`).toISOString());
+    setBirthDate({ day: Number(day), month: Number(month), year: Number(year) });
     navigation.push('InputGender');
   };
 
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
     padding: 0,
     margin: 0,
-    minWidth: spacing[40],
+    minWidth: scale(spacing[40]),
   },
   slash: {
     marginRight: spacing[8],

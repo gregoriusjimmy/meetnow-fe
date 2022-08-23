@@ -2,8 +2,10 @@ import * as Location from 'expo-location';
 import { User } from 'firebase/auth';
 import { atom } from 'jotai';
 
-type TPermissionLocationAtom = Location.PermissionStatus | null;
+import { TSignUpForm } from './features/sign-up/atoms';
 
+type TPermissionLocationAtom = Location.PermissionStatus | null;
+export type TUser = TSignUpForm;
 export const permissionLocationAtom = atom<TPermissionLocationAtom>(null);
 
 //auth
