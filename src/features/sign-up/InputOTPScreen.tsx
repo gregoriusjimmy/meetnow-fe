@@ -4,10 +4,12 @@ import { TRootStackParamList } from '@src/AppNavigator';
 import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
 import { spacing } from '@src/theme';
+import { useAtomValue } from 'jotai';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { OTPInput, SignUpContainer } from './UISignUp';
+import { phoneNumberAtom } from './atoms';
 
 type TInputOTPScreenNavigationProp = NativeStackNavigationProp<
   TRootStackParamList,
@@ -16,8 +18,10 @@ type TInputOTPScreenNavigationProp = NativeStackNavigationProp<
 
 export function InputOTPScreen() {
   const navigation = useNavigation<TInputOTPScreenNavigationProp>();
-  const [code, setCode] = useState('');
-  const [isComplete, setIsComplete] = useState(false);
+  const [code, setCode] = useState('927482');
+  // const [isComplete, setIsComplete] = useState(false);
+  const [isComplete, setIsComplete] = useState(true);
+  const phoneNumber = useAtomValue(phoneNumberAtom);
   const CODE_LENGTH = 6;
 
   const handleChangeCode = (val: string) => {
@@ -33,7 +37,7 @@ export function InputOTPScreen() {
       </CText>
       <View style={styles.resendContainer}>
         <CText variant="subtitle" style={styles.phoneNumber}>
-          +6289392838
+          {phoneNumber || '+6289392838'}
         </CText>
         <Button variant="primary-outline" size="s">
           Resend
