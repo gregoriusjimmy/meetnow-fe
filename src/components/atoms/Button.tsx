@@ -4,11 +4,12 @@ import {
   TouchableOpacityProps,
   TouchableOpacity,
   StyleSheet,
-  Text,
   StyleProp,
   TextStyle,
   View,
 } from 'react-native';
+
+import { CText } from './CText';
 
 interface Props extends TouchableOpacityProps {
   size?: 's' | 'm' | 'l';
@@ -58,9 +59,11 @@ export const Button = forwardRef<TouchableOpacity, Props>(
         disabled={disabled}
         {...otherProps}>
         {iconPosition === 'left' && icon && <View style={stylesBtn.iconLeft}>{icon}</View>}
-        <Text style={[stylesText.base, stylesText[variant], stylesText[size], styleText]}>
+        <CText
+          style={[stylesText.base, stylesText[variant], stylesText[size], styleText]}
+          allowFontScaling={false}>
           {children}
-        </Text>
+        </CText>
         {iconPosition === 'right' && icon && <View style={stylesBtn.iconRight}>{icon}</View>}
       </TouchableOpacity>
     );
