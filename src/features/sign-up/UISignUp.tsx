@@ -2,14 +2,27 @@ import { useFocusEffect } from '@react-navigation/native';
 import { CText } from '@src/components/atoms/CText';
 import { colors, spacing } from '@src/theme';
 import { verticalScale } from '@src/utils/scale';
-import { ReactNode, useCallback, useRef, useState } from 'react';
-import { Pressable, StyleSheet, TextInput, View, ViewStyle } from 'react-native';
+import { memo, ReactNode, useCallback, useRef, useState } from 'react';
+import {
+  Pressable,
+  StatusBar,
+  StyleSheet,
+  TextInput,
+  View,
+  ViewStyle,
+  TouchableOpacity,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const TOTAL_SIGN_UP_STEP = 5;
+const TOTAL_SIGN_UP_STEP = 7;
 
 export function SignUpContainer({ children, style }: { children: ReactNode; style?: ViewStyle }) {
-  return <SafeAreaView style={[styles.container, style]}>{children}</SafeAreaView>;
+  return (
+    <SafeAreaView style={[styles.container, style]}>
+      <StatusBar backgroundColor="transparent" translucent />
+      {children}
+    </SafeAreaView>
+  );
 }
 
 export function SignUpStepper({ currentStep }: { currentStep: number }) {
@@ -87,6 +100,43 @@ export const OTPInput = ({
     </Pressable>
   );
 };
+
+export const Interest = memo(
+  ({
+    handlePressInterest,
+    title,
+  }: {
+    handlePressInterest: (title: string) => void;
+    title: string;
+  }) => {
+    return (
+      <TouchableOpacity
+        onPress={() => handlePressInterest(title)}
+        style={[
+          {
+            paddingVertical: spacing[4],
+            paddingHorizontal: spacing[8],
+            margin: spacing[4],
+            borderWidth: 1,
+            borderColor: colors.brand.secondary,
+            borderRadius: spacing[32],
+            flexDirection: 'row',
+            alignItems: 'center',
+          },
+        ]}>
+        <CText
+          variant="subtitle"
+          style={[{ color: colors.brand.secondary, marginRight: spacing[4] }]}>
+          {title}
+        </CText>
+        <CText variant="h5Medium" style={[{ color: colors.brand.secondaryDark }]}>
+          x
+        </CText>
+      </TouchableOpacity>
+    );
+  }
+);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -110,6 +160,7 @@ const styles = StyleSheet.create({
   textInputHidden: {
     position: 'absolute',
     opacity: 0,
+    width: '100%',
   },
   signUpStepper: {
     alignSelf: 'flex-end',

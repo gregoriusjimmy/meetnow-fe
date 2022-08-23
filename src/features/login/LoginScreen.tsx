@@ -7,7 +7,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TRootStackParamList } from '@src/AppNavigator';
 import { useAuth } from '@src/hooks/useAuth';
 import { spacing } from '@src/theme';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, StatusBar, StyleSheet, View } from 'react-native';
 
 type TLoginScreenNavigationProp = NativeStackNavigationProp<TRootStackParamList, 'Login'>;
 
@@ -17,10 +17,11 @@ export function LoginScreen() {
 
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor="transparent" translucent />
       <LinearGradientBackground />
       <Image source={FullLogo} style={styles.image} />
       <View style={styles.buttons}>
-        <Button
+        {/* <Button
           disabled={!request}
           style={styles.firstBtn}
           variant="neutral"
@@ -28,7 +29,7 @@ export function LoginScreen() {
           onPress={signInWithGoogle}
           icon={<FontAwesome5 name="google" size={BUTTON.fontSize.l} />}>
           Sign in with google
-        </Button>
+        </Button> */}
         <Button variant="neutral" size="l" onPress={() => navigation.navigate('InputPhoneNumber')}>
           Sign in with phone number
         </Button>
@@ -43,9 +44,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.layout,
     alignItems: 'center',
   },
+  // image: {
+  //   resizeMode: 'contain',
+  //   height: '70%',
+  // },
   image: {
     resizeMode: 'contain',
-    height: '70%',
+    height: '80%',
   },
   buttons: {
     alignSelf: 'stretch',

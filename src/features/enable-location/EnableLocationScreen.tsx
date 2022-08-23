@@ -6,7 +6,7 @@ import { permissionLocationAtom } from '@src/rootState';
 import { spacing } from '@src/theme';
 import * as Location from 'expo-location';
 import { useSetAtom } from 'jotai';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, StatusBar, StyleSheet, View } from 'react-native';
 
 export function EnableLocationScreen() {
   const setPermissionLocation = useSetAtom(permissionLocationAtom);
@@ -22,6 +22,7 @@ export function EnableLocationScreen() {
   return (
     <View style={styles.container}>
       <LinearGradientBackground />
+      <StatusBar backgroundColor="transparent" translucent />
       <Image source={GpsImage} style={styles.image} />
       <View style={styles.content}>
         <CText color="light" variant="h3Bold">
