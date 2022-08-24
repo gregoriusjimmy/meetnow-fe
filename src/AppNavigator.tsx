@@ -6,6 +6,7 @@ import { useAtomValue } from 'jotai';
 
 import { LoadingScreen } from './components/screens/LoadingScreen';
 import { EnableLocationScreen } from './features/enable-location/EnableLocationScreen';
+import { MainScreen } from './features/main/MainScreen';
 import { InputBirthDateScreen } from './features/sign-up/InputBirthDateScreen';
 import { InputGenderScreen } from './features/sign-up/InputGenderScreen';
 import { InputInstagramUsernameScreen } from './features/sign-up/InputInstagranUsername';
@@ -30,6 +31,7 @@ export type TRootStackParamList = {
   InputInstagramUsername: undefined;
   InputInterests: undefined;
   UploadProfilePicture: undefined;
+  Main: undefined;
 };
 
 const Stack = createNativeStackNavigator<TRootStackParamList>();
@@ -54,23 +56,29 @@ export const AppNavigator = () => {
           {permissionLocation === PermissionStatus.GRANTED && !user && (
             <Stack.Screen name="Login" component={LoginScreen} />
           )}
+          {permissionLocation === PermissionStatus.GRANTED && user && (
+            <Stack.Screen name="Main" component={MainScreen} />
+          )}
         </Stack.Group>
-        <Stack.Group
-          screenOptions={{
-            headerTransparent: true,
-            headerTitle: '',
-          }}>
-          {/* TODO: handle cannot go back to input phone number if otp already verified */}
-          <Stack.Screen name="InputPhoneNumber" component={InputPhoneNumberScreen} />
-          <Stack.Screen name="InputOTP" component={InputOTPScreen} />
-          <Stack.Screen name="InputName" component={InputNameScreen} />
-          <Stack.Screen name="InputNickname" component={InputNicknameScreen} />
-          <Stack.Screen name="InputBirthDate" component={InputBirthDateScreen} />
-          <Stack.Screen name="InputGender" component={InputGenderScreen} />
-          <Stack.Screen name="InputInstagramUsername" component={InputInstagramUsernameScreen} />
-          <Stack.Screen name="InputInterests" component={InputInterestsScreen} />
-          <Stack.Screen name="UploadProfilePicture" component={UploadProfilePictureScreen} />
-        </Stack.Group>
+        {!user && (
+          // SIGN UP STACK
+          <Stack.Group
+            screenOptions={{
+              headerTransparent: true,
+              headerTitle: '',
+            }}>
+            {/* TODO: handle cannot go back to input phone number if otp already verified */}
+            <Stack.Screen name="InputPhoneNumber" component={InputPhoneNumberScreen} />
+            <Stack.Screen name="InputOTP" component={InputOTPScreen} />
+            <Stack.Screen name="InputName" component={InputNameScreen} />
+            <Stack.Screen name="InputNickname" component={InputNicknameScreen} />
+            <Stack.Screen name="InputBirthDate" component={InputBirthDateScreen} />
+            <Stack.Screen name="InputGender" component={InputGenderScreen} />
+            <Stack.Screen name="InputInstagramUsername" component={InputInstagramUsernameScreen} />
+            <Stack.Screen name="InputInterests" component={InputInterestsScreen} />
+            <Stack.Screen name="UploadProfilePicture" component={UploadProfilePictureScreen} />
+          </Stack.Group>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
