@@ -46,11 +46,7 @@ export const OTPInput = ({
   const inputArray = new Array(maximumLength).fill(0);
   const inputRef = useRef<TextInput>(null);
 
-  useFocusEffect(
-    useCallback(() => {
-      handleOnPress();
-    }, [])
-  );
+  useFocusEffect(useCallback(() => handleOnPress(), []));
 
   const handleOnPress = () => {
     setIsInputFieldFocused(true);
