@@ -1,4 +1,5 @@
 import { colors } from '@src/theme';
+import { moderateScale } from '@src/utils/scale';
 import { forwardRef } from 'react';
 import { StyleSheet, Text, TextProps } from 'react-native';
 
@@ -22,6 +23,7 @@ interface Props extends TextProps {
     | 'h5Bold'
     | 'p'
     | 'subtitle'
+    | 'subtitleMedium'
     | 'caption';
   color?: 'light' | 'dark' | 'error';
 }
@@ -48,7 +50,7 @@ export const CTEXT = {
     h2: 30,
     h3: 24,
     h4: 20,
-    h5: 18,
+    h5: moderateScale(18),
     subtitle: 16,
     p: 14,
     caption: 14,
@@ -118,6 +120,10 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontFamily: CTEXT.fontFamily.regular,
+    fontSize: CTEXT.fontSize.subtitle,
+  },
+  subtitleMedium: {
+    fontFamily: CTEXT.fontFamily.medium,
     fontSize: CTEXT.fontSize.subtitle,
   },
   p: {
