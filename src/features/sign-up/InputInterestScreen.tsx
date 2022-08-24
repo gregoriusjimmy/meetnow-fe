@@ -27,6 +27,7 @@ export function InputInterestsScreen() {
   };
 
   const handleAddInterest = () => {
+    if (inputInterest.length === 0) return;
     setInterests([...interests, inputInterest]);
     setInputInterest('');
   };
