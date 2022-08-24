@@ -21,6 +21,7 @@ export function InputPhoneNumberScreen() {
   const [phoneNumber, setPhoneNumber] = useAtom(phoneNumberAtom);
 
   const handlePressContinue = () => {
+    // TODO: prefix validation
     setPhoneNumber('62' + phoneNumber);
     navigation.push('InputOTP');
   };
