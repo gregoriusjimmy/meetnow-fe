@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Svg, { SvgProps, Path } from 'react-native-svg';
 
-const ProfilePicture = (props: SvgProps) => (
-  <Svg width={140} height={140} fill="none" {...props}>
+export const IconProfilePicture = (props: SvgProps) => (
+  <Svg width={140} height={140} fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <Path d="M96.25 52.5a26.25 26.25 0 1 1-52.5 0 26.25 26.25 0 0 1 52.5 0Z" fill="#4090EF" />
     <Path
       fillRule="evenodd"
@@ -12,5 +12,3 @@ const ProfilePicture = (props: SvgProps) => (
     />
   </Svg>
 );
-
-export default ProfilePicture;
