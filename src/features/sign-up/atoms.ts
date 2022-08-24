@@ -33,5 +33,6 @@ export const genderAtom = focusAtom(signUpFormAtom, (optic) => optic.prop('gende
 export const instagramUsernameAtom = focusAtom(signUpFormAtom, (optic) =>
   optic.prop('instagramUsername')
 );
+export const photoAtom = focusAtom(signUpFormAtom, (optic) => optic.prop('photo'));
 export const interestsAtom = focusAtom(signUpFormAtom, (optic) => optic.prop('interests'));
 export const phoneNumberAtom = focusAtom(signUpFormAtom, (optic) => optic.prop('phoneNumber'));

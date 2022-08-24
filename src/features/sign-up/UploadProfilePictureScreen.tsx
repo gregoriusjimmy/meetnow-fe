@@ -1,40 +1,37 @@
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { TRootStackParamList } from '@src/AppNavigator';
 import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
-import ProfilePicture from '@src/components/icons/ProfilePicture';
+import { IconProfilePicture } from '@src/components/icons/ProfilePicture';
+import { userAtom } from '@src/rootState';
 import { spacing } from '@src/theme';
 import { verticalScale } from '@src/utils/scale';
 import * as ImagePicker from 'expo-image-picker';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useState } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
+import { photoAtom, signUpFormAtom } from './atoms';
 
 import { SignUpContainer, SignUpStepper } from './UISignUp';
-
-type TUploadProfilePictureScreenNavigationProp = NativeStackNavigationProp<
-  TRootStackParamList,
-  'UploadProfilePicture'
->;
 
 const IMAGE_PICKER_OPTIONS: ImagePicker.ImagePickerOptions = {
   allowsEditing: true,
   aspect: [1, 1],
   mediaTypes: ImagePicker.MediaTypeOptions.Images,
   quality: 0.2,
+  base64: true,
 };
 
 export function UploadProfilePictureScreen() {
-  const navigation = useNavigation<TUploadProfilePictureScreenNavigationProp>();
   const [statusCamera, requestPermissionCamera] = ImagePicker.useCameraPermissions();
   const [statusMediaLib, requestPermissionMediaLib] = ImagePicker.useMediaLibraryPermissions();
-  const [image, setImage] = useState('');
+  const signUpFormData = useAtomValue(signUpFormAtom);
+  const [photo, setPhoto] = useAtom(photoAtom);
+  const setUser = useSetAtom(userAtom);
 
   const handleOpenCamera = async () => {
     if (!statusCamera?.granted) await requestPermissionCamera();
     const result = await ImagePicker.launchCameraAsync(IMAGE_PICKER_OPTIONS);
     if (!result.cancelled) {
-      setImage(result.uri);
+      setPhoto(result.base64 ?? result.uri);
     }
   };
 
@@ -42,16 +39,20 @@ export function UploadProfilePictureScreen() {
     if (!statusMediaLib?.granted) await requestPermissionMediaLib();
     const result = await ImagePicker.launchImageLibraryAsync(IMAGE_PICKER_OPTIONS);
     if (!result.cancelled) {
-      setImage(result.uri);
+      setPhoto(result.base64 ?? result.uri);
     }
   };
 
   const renderProfilePicture = () => {
-    return image ? (
-      <Image source={{ uri: image }} style={styles.profileImage} />
+    return photo ? (
+      <Image source={{ uri: 'data:image/jpeg;base64,' + photo }} style={styles.profileImage} />
     ) : (
-      <ProfilePicture />
+      <IconProfilePicture />
     );
+  };
+
+  const handlePressFinish = () => {
+    setUser({ ...signUpFormData });
   };
 
   return (
@@ -73,8 +74,8 @@ export function UploadProfilePictureScreen() {
           </Button>
         </View>
       </View>
-      <Button disabled={!image} variant="primary" size="l">
-        Continue
+      <Button disabled={!photo} variant="primary" size="l" onPress={handlePressFinish}>
+        Finish
       </Button>
     </SignUpContainer>
   );
