@@ -46,7 +46,8 @@ export const useAuth = () => {
   };
 
   const authStateChangedListener = onAuthStateChanged(firebaseAuth, (user) => {
-    setUser(user);
+    // TODO: fix this conflict with google sign in
+    // setUser(user);
     setIsLoading(false);
   });
 
