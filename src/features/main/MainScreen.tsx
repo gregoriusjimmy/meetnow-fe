@@ -1,18 +1,25 @@
 import ImgWomanAndMan from '@assets/images/woman-man-2.png';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { TRootStackParamList } from '@src/AppNavigator';
 import { Button } from '@src/components/atoms/Button';
-import { CTEXT, CText } from '@src/components/atoms/CText';
-import { IconLocation } from '@src/components/icons/Location';
+import { CText } from '@src/components/atoms/CText';
 import { LoadingScreen } from '@src/components/screens/LoadingScreen';
 import { colors, spacing } from '@src/theme';
 import { scale, verticalScale } from '@src/utils/scale';
 import * as Location from 'expo-location';
 import { useEffect, useState } from 'react';
-import { Image, TouchableOpacity, View } from 'react-native';
+import { Image, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { CriteriaButton, MainLocation } from './UIMain';
+
+type TMainScreenNavigationProp = NativeStackNavigationProp<TRootStackParamList, 'Main'>;
 
 export function MainScreen() {
   const [currentStreet, setCurrentStreet] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const navigation = useNavigation<TMainScreenNavigationProp>();
 
   useEffect(() => {
     const getCurrentLocation = async () => {
@@ -31,114 +38,30 @@ export function MainScreen() {
     getCurrentLocation();
   }, []);
 
+  const handlePressSearch = () => {
+    navigation.navigate('SearchMate');
+  };
+
   if (isLoading) return <LoadingScreen />;
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colors.brand.primary }}>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          marginTop: verticalScale(spacing[12]),
-          paddingHorizontal: spacing.layout,
-        }}>
-        <IconLocation
-          style={{ marginBottom: spacing[4] }}
-          fill={colors.base.white}
-          width={CTEXT.fontSize.h2}
-          height={CTEXT.fontSize.h2}
-        />
-        <CText
-          variant="h3Medium"
-          style={{ marginLeft: spacing[12] }}
-          color="light"
-          numberOfLines={1}>
-          {currentStreet}
-        </CText>
-      </View>
-      <View style={{ flex: 1, marginTop: verticalScale(spacing[48]), alignItems: 'center' }}>
-        <View style={{ flex: 0.5, width: '100%' }}>
-          <Image
-            source={ImgWomanAndMan}
-            style={{
-              resizeMode: 'contain',
-              height: '100%',
-              width: '100%',
-            }}
-          />
+    <SafeAreaView style={styles.container}>
+      <MainLocation style={styles.location} currentStreet={currentStreet} />
+      <View style={styles.content}>
+        <View style={styles.imageContainer}>
+          <Image source={ImgWomanAndMan} style={styles.image} />
         </View>
-        <View
-          style={{
-            backgroundColor: colors.base.white,
-            width: '100%',
-            flex: 0.5,
-            paddingTop: verticalScale(spacing[40]),
-            shadowColor: colors.base.black,
-            shadowOffset: {
-              width: 0,
-              height: 3,
-            },
-            shadowOpacity: 0.17,
-            shadowRadius: 3.05,
-            elevation: 4,
-            borderTopLeftRadius: scale(spacing[28]),
-            borderTopRightRadius: scale(spacing[28]),
-          }}>
-          <View
-            style={{
-              paddingHorizontal: spacing.layout,
-            }}>
-            <CText variant="h4Medium" style={{ marginBottom: verticalScale(spacing[8]) }}>
+        <View style={styles.card}>
+          <View style={styles.cardContent}>
+            <CText variant="h4Medium" style={styles.cardTitle}>
               Meet-mate
             </CText>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                width: '100%',
-              }}>
-              <TouchableOpacity
-                style={{
-                  width: '30%',
-                  alignItems: 'center',
-                  padding: spacing[12],
-                  borderWidth: 1,
-                  borderColor: colors.brand.primary,
-                  borderRadius: scale(spacing[24]),
-                }}>
-                <CText variant="p">Age</CText>
-                <CText variant="subtitleMedium">18-45</CText>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  width: '30%',
-                  alignItems: 'center',
-                  padding: spacing[12],
-                  borderWidth: 1,
-                  borderColor: colors.brand.primary,
-                  borderRadius: scale(spacing[24]),
-                }}>
-                <CText variant="p">Gender</CText>
-                <CText variant="subtitleMedium">Both</CText>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  width: '30%',
-                  alignItems: 'center',
-                  padding: spacing[12],
-                  borderWidth: 1,
-                  borderColor: colors.brand.primary,
-                  borderRadius: scale(spacing[24]),
-                }}>
-                <CText variant="p">Distance</CText>
-                <CText variant="subtitleMedium">0-20km</CText>
-              </TouchableOpacity>
+            <View style={styles.criteriaContainer}>
+              <CriteriaButton title="Age" specified="18-45" />
+              <CriteriaButton title="Gender" specified="Both" />
+              <CriteriaButton title="Distance" specified="0-20km" />
             </View>
-            <Button
-              style={{
-                marginTop: verticalScale(spacing[40]),
-              }}
-              variant="primary">
+            <Button style={styles.ctaBtn} onPress={handlePressSearch} variant="primary">
               SEARCH MEET-MATE
             </Button>
           </View>
@@ -147,3 +70,48 @@ export function MainScreen() {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: colors.brand.primary },
+  location: {
+    marginTop: verticalScale(spacing[12]),
+    paddingHorizontal: spacing.layout,
+  },
+  content: { flex: 1, marginTop: verticalScale(spacing[48]), alignItems: 'center' },
+  image: {
+    resizeMode: 'contain',
+    height: '100%',
+    width: '100%',
+  },
+  imageContainer: { flex: 0.5, width: '100%' },
+  card: {
+    backgroundColor: colors.base.white,
+    width: '100%',
+    flex: 0.5,
+    paddingTop: verticalScale(spacing[40]),
+    shadowColor: colors.base.black,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.17,
+    shadowRadius: 3.05,
+    elevation: 4,
+    borderTopLeftRadius: scale(spacing[28]),
+    borderTopRightRadius: scale(spacing[28]),
+  },
+  cardContent: {
+    paddingHorizontal: spacing.layout,
+  },
+  cardTitle: {
+    marginBottom: verticalScale(spacing[8]),
+  },
+  ctaBtn: {
+    marginTop: verticalScale(spacing[40]),
+  },
+  criteriaContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+});
