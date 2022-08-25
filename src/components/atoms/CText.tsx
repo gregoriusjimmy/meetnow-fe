@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 import { StyleSheet, Text, TextProps } from 'react-native';
 
 interface Props extends TextProps {
-  children: string;
+  children: string | JSX.Element;
   variant?:
     | 'h1'
     | 'h2'
@@ -25,7 +25,7 @@ interface Props extends TextProps {
     | 'subtitle'
     | 'subtitleMedium'
     | 'caption';
-  color?: 'light' | 'dark' | 'error';
+  color?: 'light' | 'dark' | 'error' | 'gray';
 }
 
 export const CText = forwardRef<Text, Props>(
@@ -139,6 +139,9 @@ const styles = StyleSheet.create({
   },
   dark: {
     color: colors.base.black,
+  },
+  gray: {
+    color: colors.base.gray,
   },
   error: {
     color: 'red',
