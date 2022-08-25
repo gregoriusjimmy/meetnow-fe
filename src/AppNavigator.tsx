@@ -7,6 +7,9 @@ import { useAtomValue } from 'jotai';
 import { LoadingScreen } from './components/screens/LoadingScreen';
 import { EnableLocationScreen } from './features/enable-location/EnableLocationScreen';
 import { MainScreen } from './features/main/MainScreen';
+import { MatchedScreen } from './features/main/MatchedScreen';
+import { NavigateMateScreen } from './features/main/NavigateMateScreen';
+import { SearchMateScreen } from './features/main/SearchMateScreen';
 import { InputBirthDateScreen } from './features/sign-up/InputBirthDateScreen';
 import { InputGenderScreen } from './features/sign-up/InputGenderScreen';
 import { InputInstagramUsernameScreen } from './features/sign-up/InputInstagranUsername';
@@ -32,6 +35,9 @@ export type TRootStackParamList = {
   InputInterests: undefined;
   UploadProfilePicture: undefined;
   Main: undefined;
+  SearchMate: undefined;
+  Matched: undefined;
+  NavigateMate: undefined;
 };
 
 const Stack = createNativeStackNavigator<TRootStackParamList>();
@@ -56,8 +62,17 @@ export const AppNavigator = () => {
           {permissionLocation === PermissionStatus.GRANTED && !user && (
             <Stack.Screen name="Login" component={LoginScreen} />
           )}
-          {permissionLocation === PermissionStatus.GRANTED && user && (
-            <Stack.Screen name="Main" component={MainScreen} />
+          {permissionLocation === PermissionStatus.GRANTED && user && !user.matched && (
+            <>
+              <Stack.Screen name="Main" component={MainScreen} />
+              <Stack.Screen name="SearchMate" component={SearchMateScreen} />
+            </>
+          )}
+          {permissionLocation === PermissionStatus.GRANTED && user && user.matched && (
+            <>
+              <Stack.Screen name="Matched" component={MatchedScreen} />
+              <Stack.Screen name="NavigateMate" component={NavigateMateScreen} />
+            </>
           )}
         </Stack.Group>
         {!user && (
