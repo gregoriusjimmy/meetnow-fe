@@ -5,12 +5,16 @@ import { atom } from 'jotai';
 import { TSignUpForm } from './features/sign-up/atoms';
 
 type TPermissionLocationAtom = Location.PermissionStatus | null;
-// export type TUser = TSignUpForm;
+
+export interface IUser extends TSignUpForm {
+  matched: boolean;
+}
+
 export const permissionLocationAtom = atom<TPermissionLocationAtom>(null);
 
 //auth
-export const userAtom = atom<TSignUpForm | null>(null);
-// export const userAtom = atom<TSignUpForm | null>({
+export const userAtom = atom<IUser | null>(null);
+// export const userAtom = atom<IUser | null>({
 //   birthDate: {
 //     day: 8,
 //     month: 2,
@@ -24,6 +28,8 @@ export const userAtom = atom<TSignUpForm | null>(null);
 //   nickname: 'Ghzx',
 //   phoneNumber: '6266',
 //   photo: '',
+//   matched: false,
 // });
 export const isLoadingAuthAtom = atom<boolean>(true);
 export const errorAuthAtom = atom<Error | null>(null);
+export const isSearchingMate = atom(false);

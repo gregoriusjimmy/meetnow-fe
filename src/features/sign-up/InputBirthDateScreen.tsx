@@ -5,13 +5,13 @@ import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
 import { InputField } from '@src/components/atoms/InputField';
 import { spacing } from '@src/theme';
+import { scale } from '@src/utils/scale';
 import { useSetAtom } from 'jotai';
 import { useRef, useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 
 import { SignUpContainer, SignUpStepper } from './UISignUp';
 import { birthDateAtom } from './atoms';
-import { scale } from '@src/utils/scale';
 
 type TInputBirthDateScreenNavigationProp = NativeStackNavigationProp<
   TRootStackParamList,
