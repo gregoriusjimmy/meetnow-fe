@@ -18,6 +18,7 @@ interface Props extends TouchableOpacityProps {
     | 'secondary'
     | 'neutral'
     | 'primary-outline'
+    | 'primary-text'
     | 'secondary-outline'
     | 'neutral-outline';
   children: string;
@@ -95,6 +96,9 @@ const stylesText = StyleSheet.create({
   primary: {
     color: colors.base.white,
   },
+  'primary-text': {
+    color: colors.brand.primary,
+  },
   'primary-outline': {
     color: colors.brand.primary,
   },
@@ -118,7 +122,7 @@ const stylesBtn = StyleSheet.create({
     borderRadius: spacing[24],
     paddingVertical: spacing[12],
     flexDirection: 'row',
-    alignItems: 'baseline',
+    alignItems: 'center',
     justifyContent: 'center',
   },
   baseOutline: {
@@ -141,6 +145,9 @@ const stylesBtn = StyleSheet.create({
   },
   primary: {
     backgroundColor: colors.brand.primary,
+  },
+  'primary-text': {
+    elevation: 0,
   },
   'primary-outline': {
     borderColor: colors.brand.primary,
