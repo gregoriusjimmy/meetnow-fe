@@ -2,16 +2,9 @@ import { useFocusEffect } from '@react-navigation/native';
 import { CText } from '@src/components/atoms/CText';
 import { colors, spacing } from '@src/theme';
 import { verticalScale } from '@src/utils/scale';
+import { StatusBar } from 'expo-status-bar';
 import { memo, ReactNode, useCallback, useRef, useState } from 'react';
-import {
-  Pressable,
-  StatusBar,
-  StyleSheet,
-  TextInput,
-  View,
-  ViewStyle,
-  TouchableOpacity,
-} from 'react-native';
+import { Pressable, StyleSheet, TextInput, View, ViewStyle, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const TOTAL_SIGN_UP_STEP = 7;

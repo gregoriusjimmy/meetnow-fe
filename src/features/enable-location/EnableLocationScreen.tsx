@@ -5,8 +5,9 @@ import { LinearGradientBackground } from '@components/atoms/LinearGradientBackgr
 import { permissionLocationAtom } from '@src/rootState';
 import { spacing } from '@src/theme';
 import * as Location from 'expo-location';
+import { StatusBar } from 'expo-status-bar';
 import { useSetAtom } from 'jotai';
-import { Image, StatusBar, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
 export function EnableLocationScreen() {
   const setPermissionLocation = useSetAtom(permissionLocationAtom);

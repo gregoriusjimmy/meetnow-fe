@@ -7,6 +7,7 @@ import { CText } from '@src/components/atoms/CText';
 import { colors, spacing } from '@src/theme';
 import { scale, verticalScale } from '@src/utils/scale';
 import * as Linking from 'expo-linking';
+import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -30,6 +31,7 @@ export const NavigateMateScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor="transparent" translucent />
       <View style={styles.content}>
         <CText variant="h2Medium">Vika</CText>
         <FontAwesome

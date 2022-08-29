@@ -4,6 +4,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TRootStackParamList } from '@src/AppNavigator';
 import { CText } from '@src/components/atoms/CText';
 import { userAtom } from '@src/rootState';
+import { StatusBar } from 'expo-status-bar';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
@@ -55,6 +56,7 @@ export const SearchMateScreen = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor="transparent" translucent />
       <Animated.Image source={ImgBirdLoading} style={duckAnimationStyle} />
       <CText variant="subtitle">Searching your meet-mate... </CText>
     </View>

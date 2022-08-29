@@ -7,6 +7,7 @@ import { Button } from '@src/components/atoms/Button';
 import { CTEXT, CText } from '@src/components/atoms/CText';
 import { colors, spacing } from '@src/theme';
 import { verticalScale } from '@src/utils/scale';
+import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -19,6 +20,7 @@ export const MatchedScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor="transparent" translucent />
       <CText variant="h3" style={styles.introText}>
         Yeay, we found your meet-mate!
       </CText>

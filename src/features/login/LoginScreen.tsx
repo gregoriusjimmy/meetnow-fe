@@ -7,7 +7,8 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TRootStackParamList } from '@src/AppNavigator';
 import { useAuth } from '@src/hooks/useAuth';
 import { spacing } from '@src/theme';
-import { Image, StatusBar, StyleSheet, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { Image, StyleSheet, View } from 'react-native';
 
 type TLoginScreenNavigationProp = NativeStackNavigationProp<TRootStackParamList, 'Login'>;
 

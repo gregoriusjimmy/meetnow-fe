@@ -8,6 +8,7 @@ import { LoadingScreen } from '@src/components/screens/LoadingScreen';
 import { colors, spacing } from '@src/theme';
 import { scale, verticalScale } from '@src/utils/scale';
 import * as Location from 'expo-location';
+import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { Image, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -46,6 +47,7 @@ export function MainScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor="transparent" translucent />
       <MainLocation style={styles.location} currentStreet={currentStreet} />
       <View style={styles.content}>
         <View style={styles.imageContainer}>

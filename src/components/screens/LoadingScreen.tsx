@@ -1,6 +1,7 @@
 import { colors } from '@src/theme';
+import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { View, StyleSheet, ActivityIndicator, StatusBar } from 'react-native';
+import { View, StyleSheet, ActivityIndicator } from 'react-native';
 
 export const LoadingScreen = () => {
   return (
