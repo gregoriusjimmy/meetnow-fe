@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.layout,
   },
   introText: { marginTop: verticalScale(spacing[12]) },
-  content: { flex: 0.8, justifyContent: 'center' },
+  content: { flex: 1, justifyContent: 'center' },
   image: {
     resizeMode: 'contain',
     height: '100%',

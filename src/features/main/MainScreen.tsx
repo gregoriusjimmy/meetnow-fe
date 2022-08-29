@@ -79,17 +79,21 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(spacing[12]),
     paddingHorizontal: spacing.layout,
   },
-  content: { flex: 1, marginTop: verticalScale(spacing[48]), alignItems: 'center' },
+  content: {
+    flex: 1,
+    marginTop: verticalScale(spacing[48]),
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
   image: {
     resizeMode: 'contain',
     height: '100%',
     width: '100%',
   },
-  imageContainer: { flex: 0.5, width: '100%' },
+  imageContainer: { flex: 1, width: '100%' },
   card: {
     backgroundColor: colors.base.white,
     width: '100%',
-    flex: 0.5,
     paddingTop: verticalScale(spacing[40]),
     shadowColor: colors.base.black,
     shadowOffset: {
@@ -109,7 +113,7 @@ const styles = StyleSheet.create({
     marginBottom: verticalScale(spacing[8]),
   },
   ctaBtn: {
-    marginTop: verticalScale(spacing[40]),
+    marginVertical: verticalScale(spacing[40]),
   },
   criteriaContainer: {
     flexDirection: 'row',
