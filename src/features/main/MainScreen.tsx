@@ -13,13 +13,15 @@ import { useEffect, useState } from 'react';
 import { Image, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { CriteriaButton, MainLocation } from './UIMain';
-
+import { CriteriaButton, MainLocation, ModalCriteriaAge } from './UIMain';
 type TMainScreenNavigationProp = NativeStackNavigationProp<TRootStackParamList, 'Main'>;
 
 export function MainScreen() {
   const [currentStreet, setCurrentStreet] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [openModalAge, setOpenModalAge] = useState(false);
+  const [lowAgeRange, setLowAgeRange] = useState(18);
+  const [highAgeRange, setHighAgeRange] = useState(50);
   const navigation = useNavigation<TMainScreenNavigationProp>();
 
   useEffect(() => {
@@ -42,12 +44,23 @@ export function MainScreen() {
   const handlePressSearch = () => {
     navigation.navigate('SearchMate');
   };
+  const handleValueChange = (low: number, high: number) => {
+    setLowAgeRange(low);
+    setHighAgeRange(high);
+  };
 
   if (isLoading) return <LoadingScreen />;
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="transparent" translucent />
+      <ModalCriteriaAge
+        handleBackdropPress={() => setOpenModalAge(false)}
+        visible={openModalAge}
+        handleValueChange={handleValueChange}
+        low={lowAgeRange}
+        high={highAgeRange}
+      />
       <MainLocation style={styles.location} currentStreet={currentStreet} />
       <View style={styles.content}>
         <View style={styles.imageContainer}>
@@ -59,9 +72,13 @@ export function MainScreen() {
               Meet-mate
             </CText>
             <View style={styles.criteriaContainer}>
-              <CriteriaButton title="Age" specified="18-45" />
-              <CriteriaButton title="Gender" specified="Both" />
-              <CriteriaButton title="Distance" specified="0-20km" />
+              <CriteriaButton
+                title="Age"
+                specified={`${lowAgeRange.toString()}-${highAgeRange.toString()}`}
+                handlePress={() => setOpenModalAge(true)}
+              />
+              <CriteriaButton title="Gender" specified="All" handlePress={() => {}} />
+              <CriteriaButton title="Distance" specified="0-20km" handlePress={() => {}} />
             </View>
             <Button style={styles.ctaBtn} onPress={handlePressSearch} variant="primary">
               SEARCH MEET-MATE

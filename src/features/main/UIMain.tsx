@@ -1,7 +1,9 @@
+import { CModal } from '@src/components/atoms/CModal';
 import { CTEXT, CText } from '@src/components/atoms/CText';
+import { RangeSlider } from '@src/components/atoms/RangeSlider';
 import { IconLocation } from '@src/components/icons/Location';
 import { colors, spacing } from '@src/theme';
-import { scale } from '@src/utils/scale';
+import { scale, verticalScale } from '@src/utils/scale';
 import { StyleProp, StyleSheet, View, ViewStyle, TouchableOpacity } from 'react-native';
 
 export const MainLocation = ({
@@ -26,29 +28,28 @@ export const MainLocation = ({
   );
 };
 
-export const CriteriaButton = ({ title, specified }: { title: string; specified: string }) => {
-  return (
-    <TouchableOpacity style={criteriaButtonStyles.container}>
-      <CText variant="p">{title}</CText>
-      <CText variant="subtitleMedium">{specified}</CText>
-    </TouchableOpacity>
-  );
-};
-
-export const InterestBadge = () => {
-  return (
-    <View style={interestBadgeStyles.container}>
-      <CText variant="p" style={interestBadgeStyles.text}>
-        Berenang
-      </CText>
-    </View>
-  );
-};
 const mainLocationStyles = StyleSheet.create({
   container: { flexDirection: 'row', alignItems: 'center' },
   icon: { marginBottom: spacing[4] },
   text: { marginLeft: spacing[12] },
 });
+
+export const CriteriaButton = ({
+  title,
+  specified,
+  handlePress,
+}: {
+  title: string;
+  specified: string;
+  handlePress: () => void;
+}) => {
+  return (
+    <TouchableOpacity style={criteriaButtonStyles.container} onPress={handlePress}>
+      <CText variant="p">{title}</CText>
+      <CText variant="subtitleMedium">{specified}</CText>
+    </TouchableOpacity>
+  );
+};
 
 const criteriaButtonStyles = StyleSheet.create({
   container: {
@@ -60,6 +61,67 @@ const criteriaButtonStyles = StyleSheet.create({
     borderRadius: scale(spacing[24]),
   },
 });
+
+export const ModalCriteriaAge = ({
+  handleBackdropPress,
+  handleValueChange,
+  low,
+  high,
+  visible,
+}: {
+  handleBackdropPress: () => void;
+  handleValueChange: (low: number, high: number) => void;
+  low: number;
+  high: number;
+  visible: boolean;
+}) => {
+  return (
+    <CModal handleBackdropPress={handleBackdropPress} visible={visible}>
+      <View style={modalCriteriaAgeStyles.content}>
+        <CText variant="h4" style={modalCriteriaAgeStyles.textTitle}>
+          Age range
+        </CText>
+        <CText variant="h2Medium">{`${low} - ${high}`}</CText>
+        <RangeSlider
+          low={low}
+          high={high}
+          min={18}
+          max={50}
+          minRange={5}
+          handleValueChange={handleValueChange}
+        />
+      </View>
+    </CModal>
+  );
+};
+
+const modalCriteriaAgeStyles = StyleSheet.create({
+  content: {
+    alignItems: 'center',
+    backgroundColor: colors.base.white,
+    paddingHorizontal: spacing.layout,
+    paddingVertical: verticalScale(spacing[32]),
+    borderTopLeftRadius: scale(spacing[28]),
+    borderTopRightRadius: scale(spacing[28]),
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    left: 0,
+  },
+  textTitle: {
+    marginBottom: spacing[8],
+  },
+});
+
+export const InterestBadge = () => {
+  return (
+    <View style={interestBadgeStyles.container}>
+      <CText variant="p" style={interestBadgeStyles.text}>
+        Berenang
+      </CText>
+    </View>
+  );
+};
 
 const interestBadgeStyles = StyleSheet.create({
   container: {
