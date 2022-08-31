@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 import { Image, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { CriteriaButton, MainLocation, ModalCriteriaAge } from './UIMain';
+import { CriteriaButton, MainLocation, ModalCriteriaAge, ModalCriteriaGender } from './UIMain';
 type TMainScreenNavigationProp = NativeStackNavigationProp<TRootStackParamList, 'Main'>;
 
 export function MainScreen() {
@@ -22,6 +22,12 @@ export function MainScreen() {
   const [openModalAge, setOpenModalAge] = useState(false);
   const [lowAgeRange, setLowAgeRange] = useState(18);
   const [highAgeRange, setHighAgeRange] = useState(50);
+
+  const [openModalGender, setOpenModalGender] = useState(false);
+  const [selectedGenderCriteria, setSelectedGenderCriteria] = useState<'MALE' | 'FEMALE' | 'ALL'>(
+    'ALL'
+  );
+
   const navigation = useNavigation<TMainScreenNavigationProp>();
 
   useEffect(() => {
@@ -61,6 +67,12 @@ export function MainScreen() {
         low={lowAgeRange}
         high={highAgeRange}
       />
+      <ModalCriteriaGender
+        handleBackdropPress={() => setOpenModalGender(false)}
+        visible={openModalGender}
+        selectedCriteria={selectedGenderCriteria}
+        handleSelectedOption={(option) => setSelectedGenderCriteria(option)}
+      />
       <MainLocation style={styles.location} currentStreet={currentStreet} />
       <View style={styles.content}>
         <View style={styles.imageContainer}>
@@ -77,7 +89,11 @@ export function MainScreen() {
                 specified={`${lowAgeRange.toString()}-${highAgeRange.toString()}`}
                 handlePress={() => setOpenModalAge(true)}
               />
-              <CriteriaButton title="Gender" specified="All" handlePress={() => {}} />
+              <CriteriaButton
+                title="Gender"
+                specified={selectedGenderCriteria}
+                handlePress={() => setOpenModalGender(true)}
+              />
               <CriteriaButton title="Distance" specified="0-20km" handlePress={() => {}} />
             </View>
             <Button style={styles.ctaBtn} onPress={handlePressSearch} variant="primary">

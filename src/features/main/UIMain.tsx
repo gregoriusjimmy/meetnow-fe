@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { CModal } from '@src/components/atoms/CModal';
 import { CTEXT, CText } from '@src/components/atoms/CText';
 import { RangeSlider } from '@src/components/atoms/RangeSlider';
@@ -100,7 +101,7 @@ const modalCriteriaAgeStyles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.base.white,
     paddingHorizontal: spacing.layout,
-    paddingVertical: verticalScale(spacing[32]),
+    paddingVertical: verticalScale(spacing[56]),
     borderTopLeftRadius: scale(spacing[28]),
     borderTopRightRadius: scale(spacing[28]),
     position: 'absolute',
@@ -111,6 +112,69 @@ const modalCriteriaAgeStyles = StyleSheet.create({
   textTitle: {
     marginBottom: spacing[8],
   },
+});
+
+type TGenderCriteriaOption = 'MALE' | 'FEMALE' | 'ALL';
+export const ModalCriteriaGender = ({
+  handleBackdropPress,
+  visible,
+  selectedCriteria,
+  handleSelectedOption,
+}: {
+  handleBackdropPress: () => void;
+  visible: boolean;
+  selectedCriteria: TGenderCriteriaOption;
+  handleSelectedOption: (option: TGenderCriteriaOption) => void;
+}) => {
+  const Option = ({ option }: { option: TGenderCriteriaOption }) => (
+    <TouchableOpacity
+      onPress={() => handleSelectedOption(option)}
+      style={[
+        modalCriteriaGenderStyles.optionContainer,
+        selectedCriteria === option && modalCriteriaGenderStyles.optionActive,
+      ]}>
+      {option === 'FEMALE' && (
+        <Ionicons name="female-outline" size={24} color={colors.brand.secondary} />
+      )}
+      {option === 'MALE' && <Ionicons name="male-outline" size={24} color={colors.brand.primary} />}
+      {option === 'ALL' && (
+        <Ionicons name="ios-male-female-outline" size={24} color={colors.base.darkGray} />
+      )}
+      <CText style={modalCriteriaGenderStyles.text}>{option}</CText>
+    </TouchableOpacity>
+  );
+  return (
+    <CModal handleBackdropPress={handleBackdropPress} visible={visible}>
+      <View
+        style={[
+          modalCriteriaAgeStyles.content,
+          {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          },
+        ]}>
+        <Option option="MALE" />
+        <Option option="FEMALE" />
+        <Option option="ALL" />
+      </View>
+    </CModal>
+  );
+};
+
+const modalCriteriaGenderStyles = StyleSheet.create({
+  optionContainer: {
+    borderWidth: 1,
+    paddingVertical: spacing[16],
+    paddingHorizontal: spacing[8],
+    borderColor: colors.base.lightGray,
+    borderRadius: spacing[16],
+    width: '30%',
+    alignItems: 'center',
+  },
+  optionActive: {
+    borderColor: colors.brand.primary,
+  },
+  text: { marginTop: spacing[4] },
 });
 
 export const InterestBadge = () => {
