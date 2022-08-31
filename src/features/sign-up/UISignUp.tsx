@@ -11,20 +11,34 @@ const TOTAL_SIGN_UP_STEP = 7;
 
 export function SignUpContainer({ children, style }: { children: ReactNode; style?: ViewStyle }) {
   return (
-    <SafeAreaView style={[styles.container, style]}>
+    <SafeAreaView style={[signUpContainerStyles.container, style]}>
       <StatusBar backgroundColor="transparent" translucent />
       {children}
     </SafeAreaView>
   );
 }
 
+const signUpContainerStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: spacing.layout,
+    paddingTop: verticalScale(spacing[56]),
+  },
+});
+
 export function SignUpStepper({ currentStep }: { currentStep: number }) {
   return (
-    <CText style={{ alignSelf: 'flex-end' }} variant="subtitle">
+    <CText style={signUpStepperStyles.root} variant="subtitle">
       {`${currentStep}/${TOTAL_SIGN_UP_STEP}`}
     </CText>
   );
 }
+
+const signUpStepperStyles = StyleSheet.create({
+  root: {
+    alignSelf: 'flex-end',
+  },
+});
 
 export const OTPInput = ({
   code,
@@ -64,8 +78,8 @@ export const OTPInput = ({
       <View
         key={index}
         style={[
-          styles.codeInput,
-          isCurrentInputFocused && styles.codeInputFocus,
+          OTPInputStyles.codeInput,
+          isCurrentInputFocused && OTPInputStyles.codeInputFocus,
           { minWidth: `${80 / maximumLength}%` },
         ]}>
         <CText variant="h4">{digit}</CText>
@@ -75,9 +89,11 @@ export const OTPInput = ({
 
   return (
     <Pressable onPress={handleOnPress}>
-      <View style={styles.codeInputsContainer}>{inputArray.map((_, idx) => inputDigit(idx))}</View>
+      <View style={OTPInputStyles.codeInputsContainer}>
+        {inputArray.map((_, idx) => inputDigit(idx))}
+      </View>
       <TextInput
-        style={styles.textInputHidden}
+        style={OTPInputStyles.textInputHidden}
         value={code}
         onChangeText={onChangeCode}
         maxLength={maximumLength}
@@ -89,6 +105,28 @@ export const OTPInput = ({
     </Pressable>
   );
 };
+
+const OTPInputStyles = StyleSheet.create({
+  codeInputsContainer: {
+    minHeight: spacing[36],
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  codeInput: {
+    borderBottomWidth: 1,
+    borderColor: colors.base.gray,
+    alignItems: 'center',
+  },
+  codeInputFocus: {
+    borderColor: colors.brand.primary,
+  },
+  textInputHidden: {
+    position: 'absolute',
+    opacity: 0,
+    width: '100%',
+  },
+});
 
 export const Interest = memo(
   ({
@@ -125,33 +163,3 @@ export const Interest = memo(
     );
   }
 );
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: spacing.layout,
-    paddingTop: verticalScale(spacing[56]),
-  },
-  codeInputsContainer: {
-    minHeight: spacing[36],
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  codeInput: {
-    borderBottomWidth: 1,
-    borderColor: colors.base.gray,
-    alignItems: 'center',
-  },
-  codeInputFocus: {
-    borderColor: colors.brand.primary,
-  },
-  textInputHidden: {
-    position: 'absolute',
-    opacity: 0,
-    width: '100%',
-  },
-  signUpStepper: {
-    alignSelf: 'flex-end',
-  },
-});
