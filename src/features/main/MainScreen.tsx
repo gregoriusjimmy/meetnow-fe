@@ -13,7 +13,14 @@ import { useEffect, useState } from 'react';
 import { Image, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { CriteriaButton, MainLocation, ModalCriteriaAge, ModalCriteriaGender } from './UIMain';
+import {
+  CriteriaButton,
+  MainLocation,
+  ModalCriteriaAge,
+  ModalCriteriaDistance,
+  ModalCriteriaGender,
+} from './UIMain';
+
 type TMainScreenNavigationProp = NativeStackNavigationProp<TRootStackParamList, 'Main'>;
 
 export function MainScreen() {
@@ -27,6 +34,9 @@ export function MainScreen() {
   const [selectedGenderCriteria, setSelectedGenderCriteria] = useState<'MALE' | 'FEMALE' | 'ALL'>(
     'ALL'
   );
+
+  const [openModalDistance, setOpenModalDistance] = useState(false);
+  const [selectedDistance, setSelectedDistance] = useState(20);
 
   const navigation = useNavigation<TMainScreenNavigationProp>();
 
@@ -71,7 +81,16 @@ export function MainScreen() {
         handleBackdropPress={() => setOpenModalGender(false)}
         visible={openModalGender}
         selectedCriteria={selectedGenderCriteria}
-        handleSelectedOption={(option) => setSelectedGenderCriteria(option)}
+        handleSelectedOption={(option) => {
+          setSelectedGenderCriteria(option);
+          setOpenModalGender(false);
+        }}
+      />
+      <ModalCriteriaDistance
+        handleBackdropPress={() => setOpenModalDistance(false)}
+        visible={openModalDistance}
+        value={selectedDistance}
+        handleValueChange={(val: number) => setSelectedDistance(val)}
       />
       <MainLocation style={styles.location} currentStreet={currentStreet} />
       <View style={styles.content}>
@@ -94,7 +113,11 @@ export function MainScreen() {
                 specified={selectedGenderCriteria}
                 handlePress={() => setOpenModalGender(true)}
               />
-              <CriteriaButton title="Distance" specified="0-20km" handlePress={() => {}} />
+              <CriteriaButton
+                title="Distance"
+                specified={`${selectedDistance}km`}
+                handlePress={() => setOpenModalDistance(true)}
+              />
             </View>
             <Button style={styles.ctaBtn} onPress={handlePressSearch} variant="primary">
               SEARCH MEET-MATE

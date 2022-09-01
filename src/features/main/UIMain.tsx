@@ -114,6 +114,37 @@ const modalCriteriaAgeStyles = StyleSheet.create({
   },
 });
 
+export const ModalCriteriaDistance = ({
+  handleBackdropPress,
+  handleValueChange,
+  value,
+  visible,
+}: {
+  handleBackdropPress: () => void;
+  handleValueChange: (value: number) => void;
+  value: number;
+  visible: boolean;
+}) => {
+  return (
+    <CModal handleBackdropPress={handleBackdropPress} visible={visible}>
+      <View style={modalCriteriaAgeStyles.content}>
+        <CText variant="h4" style={modalCriteriaAgeStyles.textTitle}>
+          Maximum distance
+        </CText>
+        <CText variant="h2Medium">{`${value}km`}</CText>
+        <RangeSlider
+          disableRange
+          min={1}
+          max={21}
+          step={1}
+          low={value}
+          handleValueChange={handleValueChange}
+        />
+      </View>
+    </CModal>
+  );
+};
+
 type TGenderCriteriaOption = 'MALE' | 'FEMALE' | 'ALL';
 export const ModalCriteriaGender = ({
   handleBackdropPress,
@@ -145,14 +176,7 @@ export const ModalCriteriaGender = ({
   );
   return (
     <CModal handleBackdropPress={handleBackdropPress} visible={visible}>
-      <View
-        style={[
-          modalCriteriaAgeStyles.content,
-          {
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          },
-        ]}>
+      <View style={[modalCriteriaAgeStyles.content, modalCriteriaGenderStyles.content]}>
         <Option option="MALE" />
         <Option option="FEMALE" />
         <Option option="ALL" />
@@ -173,6 +197,10 @@ const modalCriteriaGenderStyles = StyleSheet.create({
   },
   optionActive: {
     borderColor: colors.brand.primary,
+  },
+  content: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   text: { marginTop: spacing[4] },
 });
