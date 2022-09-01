@@ -23,7 +23,9 @@ export const RangeSlider = ({
   max,
   low,
   high,
-  minRange,
+  step = 1,
+  minRange = 1,
+  disableRange = false,
   style,
 }: {
   handleValueChange: (low: number, high: number) => void;
@@ -31,7 +33,9 @@ export const RangeSlider = ({
   max: number;
   low?: number;
   high?: number;
+  step?: number;
   minRange?: number;
+  disableRange?: boolean;
   style?: StyleProp<View>;
 }) => {
   const renderThumb = useCallback(() => <Thumb />, []);
@@ -45,8 +49,9 @@ export const RangeSlider = ({
       max={max}
       low={low}
       high={high}
+      disableRange={disableRange}
       minRange={minRange}
-      step={1}
+      step={step}
       renderThumb={renderThumb}
       renderRail={renderRail}
       renderRailSelected={renderRailSelected}
