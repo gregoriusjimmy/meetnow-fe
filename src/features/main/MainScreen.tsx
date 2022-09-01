@@ -1,5 +1,5 @@
 import ImgWomanAndMan from '@assets/images/woman-man-2.png';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TRootStackParamList } from '@src/AppNavigator';
 import { Button } from '@src/components/atoms/Button';
@@ -9,9 +9,11 @@ import { colors, spacing } from '@src/theme';
 import { scale, verticalScale } from '@src/utils/scale';
 import * as Location from 'expo-location';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect, useState } from 'react';
+import { useSetAtom } from 'jotai';
+import { useEffect, useState, useCallback } from 'react';
 import { Image, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { permissionLocationAtom } from '@src/rootState';
 
 import {
   CriteriaButton,
@@ -39,27 +41,32 @@ export function MainScreen() {
   const [selectedDistance, setSelectedDistance] = useState(20);
 
   const navigation = useNavigation<TMainScreenNavigationProp>();
+  const setPermissionLocation = useSetAtom(permissionLocationAtom);
 
-  useEffect(() => {
-    const getCurrentLocation = async () => {
-      try {
-        setIsLoading(true);
-        const { coords } = await Location.getCurrentPositionAsync();
-        const address = await Location.reverseGeocodeAsync(coords);
-        const { street, district, city, subregion, region } = address[0];
-        setCurrentStreet(street ?? district ?? city ?? subregion ?? region ?? 'Undefined');
-      } catch (error) {
-        console.warn(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    getCurrentLocation();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      const getCurrentLocation = async () => {
+        try {
+          setIsLoading(true);
+          const { coords } = await Location.getCurrentPositionAsync();
+          const address = await Location.reverseGeocodeAsync(coords);
+          const { street, district, city, subregion, region } = address[0];
+          setCurrentStreet(street ?? district ?? city ?? subregion ?? region ?? 'Undefined');
+          setIsLoading(false);
+        } catch (error) {
+          console.warn(error);
+          // block user for accessing the app
+          setPermissionLocation(null);
+        }
+      };
+      getCurrentLocation();
+    }, [])
+  );
 
   const handlePressSearch = () => {
     navigation.navigate('SearchMate');
   };
+
   const handleValueChange = (low: number, high: number) => {
     setLowAgeRange(low);
     setHighAgeRange(high);
