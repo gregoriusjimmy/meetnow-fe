@@ -1,4 +1,4 @@
-import { colors, spacing } from '@src/theme';
+import { colors, spacing } from '@src/utils/theme';
 import { forwardRef } from 'react';
 import {
   TouchableOpacityProps,

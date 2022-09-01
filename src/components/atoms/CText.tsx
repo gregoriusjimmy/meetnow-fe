@@ -1,4 +1,4 @@
-import { colors } from '@src/theme';
+import { colors } from '@src/utils/theme';
 import { moderateScale } from '@src/utils/scale';
 import { forwardRef } from 'react';
 import { StyleSheet, Text, TextProps } from 'react-native';

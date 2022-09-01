@@ -5,15 +5,15 @@ import { TRootStackParamList } from '@src/AppNavigator';
 import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
 import { LoadingScreen } from '@src/components/screens/LoadingScreen';
-import { colors, spacing } from '@src/theme';
+import { permissionLocationAtom } from '@src/rootState';
 import { scale, verticalScale } from '@src/utils/scale';
+import { colors, spacing } from '@src/utils/theme';
 import * as Location from 'expo-location';
 import { StatusBar } from 'expo-status-bar';
 import { useSetAtom } from 'jotai';
-import { useEffect, useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { Image, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { permissionLocationAtom } from '@src/rootState';
 
 import {
   CriteriaButton,

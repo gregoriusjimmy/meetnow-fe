@@ -4,7 +4,7 @@ import { TRootStackParamList } from '@src/AppNavigator';
 import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
 import { InputField } from '@src/components/atoms/InputField';
-import { spacing } from '@src/theme';
+import { spacing } from '@src/utils/theme';
 import { useAtom } from 'jotai';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';

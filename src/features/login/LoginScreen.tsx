@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TRootStackParamList } from '@src/AppNavigator';
 import { useAuth } from '@src/hooks/useAuth';
-import { spacing } from '@src/theme';
+import { spacing } from '@src/utils/theme';
 import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, View } from 'react-native';
 

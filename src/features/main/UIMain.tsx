@@ -3,8 +3,8 @@ import { CModal } from '@src/components/atoms/CModal';
 import { CTEXT, CText } from '@src/components/atoms/CText';
 import { RangeSlider } from '@src/components/atoms/RangeSlider';
 import { IconLocation } from '@src/components/icons/Location';
-import { colors, spacing } from '@src/theme';
 import { scale, verticalScale } from '@src/utils/scale';
+import { colors, spacing } from '@src/utils/theme';
 import { StyleProp, StyleSheet, View, ViewStyle, TouchableOpacity } from 'react-native';
 
 export const MainLocation = ({

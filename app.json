@@ -54,6 +54,11 @@
     "plugins": [["expo-image-picker"]],
     "runtimeVersion": {
       "policy": "sdkVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "8694a218-93fe-4cb6-81ba-1c98ad27fafb"
+      }
     }
   }
 }

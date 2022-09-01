@@ -2,15 +2,14 @@ import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
 import { IconProfilePicture } from '@src/components/icons/ProfilePicture';
 import { userAtom } from '@src/rootState';
-import { spacing } from '@src/theme';
 import { verticalScale } from '@src/utils/scale';
+import { spacing } from '@src/utils/theme';
 import * as ImagePicker from 'expo-image-picker';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { useState } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
-import { photoAtom, signUpFormAtom } from './atoms';
 
 import { SignUpContainer, SignUpStepper } from './UISignUp';
+import { photoAtom, signUpFormAtom } from './atoms';
 
 const IMAGE_PICKER_OPTIONS: ImagePicker.ImagePickerOptions = {
   allowsEditing: true,

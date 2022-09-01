@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TRootStackParamList } from '@src/AppNavigator';
 import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
-import { spacing } from '@src/theme';
+import { spacing } from '@src/utils/theme';
 import { useAtomValue } from 'jotai';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';

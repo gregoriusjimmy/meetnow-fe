@@ -3,7 +3,7 @@ import { Button } from '@components/atoms/Button';
 import { CText } from '@components/atoms/CText';
 import { LinearGradientBackground } from '@components/atoms/LinearGradientBackground';
 import { permissionLocationAtom } from '@src/rootState';
-import { spacing } from '@src/theme';
+import { spacing } from '@src/utils/theme';
 import * as Location from 'expo-location';
 import { StatusBar } from 'expo-status-bar';
 import { useSetAtom } from 'jotai';
