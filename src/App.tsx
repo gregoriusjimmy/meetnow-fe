@@ -1,5 +1,6 @@
 import { registerRootComponent } from 'expo';
 import { useFonts } from 'expo-font';
+import * as Localization from 'expo-localization';
 import * as Location from 'expo-location';
 import * as SplashScreen from 'expo-splash-screen';
 import { useSetAtom } from 'jotai';
@@ -10,6 +11,10 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppNavigator } from './AppNavigator';
 import { useAuth } from './hooks/useAuth';
 import { permissionLocationAtom } from './rootState';
+import { i18n } from './utils/i18n';
+
+i18n.locale = Localization.locale;
+i18n.enableFallback = true;
 
 SplashScreen.preventAutoHideAsync();
 
