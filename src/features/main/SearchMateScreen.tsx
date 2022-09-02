@@ -1,8 +1,8 @@
 import ImgBirdLoading from '@assets/images/bird.png';
+import { CText } from '@components/atoms/CText';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TRootStackParamList } from '@src/AppNavigator';
-import { CText } from '@src/components/atoms/CText';
 import { userAtom } from '@src/rootState';
 import { StatusBar } from 'expo-status-bar';
 import { useAtom } from 'jotai';

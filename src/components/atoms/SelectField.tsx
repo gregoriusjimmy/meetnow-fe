@@ -1,5 +1,5 @@
 import { Entypo } from '@expo/vector-icons';
-import { spacing } from '@src/utils/theme';
+import { spacing } from '@utils/theme';
 import React, { forwardRef, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 

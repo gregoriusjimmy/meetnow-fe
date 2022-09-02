@@ -1,4 +1,4 @@
-import { colors } from '@src/utils/theme';
+import { colors } from '@utils/theme';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { View, StyleSheet, ActivityIndicator } from 'react-native';

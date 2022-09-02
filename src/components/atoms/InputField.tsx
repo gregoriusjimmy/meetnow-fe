@@ -1,4 +1,4 @@
-import { colors, spacing } from '@src/utils/theme';
+import { colors, spacing } from '@utils/theme';
 import { forwardRef, useState } from 'react';
 import { StyleProp, StyleSheet, TextInput, TextInputProps, TextStyle, View } from 'react-native';
 

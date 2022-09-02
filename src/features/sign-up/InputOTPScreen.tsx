@@ -1,10 +1,10 @@
+import { Button } from '@components/atoms/Button';
+import { CText } from '@components/atoms/CText';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TRootStackParamList } from '@src/AppNavigator';
-import { Button } from '@src/components/atoms/Button';
-import { CText } from '@src/components/atoms/CText';
-import { i18n } from '@src/utils/i18n';
-import { spacing } from '@src/utils/theme';
+import { i18n } from '@utils/i18n';
+import { spacing } from '@utils/theme';
 import { useAtomValue } from 'jotai';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';

@@ -1,10 +1,10 @@
+import { CModal } from '@components/atoms/CModal';
+import { CTEXT, CText } from '@components/atoms/CText';
+import { RangeSlider } from '@components/atoms/RangeSlider';
+import { IconLocation } from '@components/icons/Location';
 import { Ionicons } from '@expo/vector-icons';
-import { CModal } from '@src/components/atoms/CModal';
-import { CTEXT, CText } from '@src/components/atoms/CText';
-import { RangeSlider } from '@src/components/atoms/RangeSlider';
-import { IconLocation } from '@src/components/icons/Location';
-import { scale, verticalScale } from '@src/utils/scale';
-import { colors, spacing } from '@src/utils/theme';
+import { scale, verticalScale } from '@utils/scale';
+import { colors, spacing } from '@utils/theme';
 import { StyleProp, StyleSheet, View, ViewStyle, TouchableOpacity } from 'react-native';
 
 export const MainLocation = ({

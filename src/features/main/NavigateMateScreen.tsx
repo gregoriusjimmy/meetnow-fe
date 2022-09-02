@@ -1,11 +1,11 @@
+import { Button } from '@components/atoms/Button';
+import { CText } from '@components/atoms/CText';
 import { FontAwesome, AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TRootStackParamList } from '@src/AppNavigator';
-import { Button } from '@src/components/atoms/Button';
-import { CText } from '@src/components/atoms/CText';
-import { scale, verticalScale } from '@src/utils/scale';
-import { colors, spacing } from '@src/utils/theme';
+import { scale, verticalScale } from '@utils/scale';
+import { colors, spacing } from '@utils/theme';
 import * as Linking from 'expo-linking';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';

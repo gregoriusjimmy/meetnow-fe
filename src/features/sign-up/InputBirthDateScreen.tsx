@@ -1,12 +1,12 @@
+import { Button } from '@components/atoms/Button';
+import { CText } from '@components/atoms/CText';
+import { InputField } from '@components/atoms/InputField';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TRootStackParamList } from '@src/AppNavigator';
-import { Button } from '@src/components/atoms/Button';
-import { CText } from '@src/components/atoms/CText';
-import { InputField } from '@src/components/atoms/InputField';
-import { i18n } from '@src/utils/i18n';
-import { scale } from '@src/utils/scale';
-import { spacing } from '@src/utils/theme';
+import { i18n } from '@utils/i18n';
+import { scale } from '@utils/scale';
+import { spacing } from '@utils/theme';
 import { useSetAtom } from 'jotai';
 import { useRef, useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';

@@ -1,13 +1,13 @@
 import ImgWomanAndMan from '@assets/images/woman-man-2.png';
+import { Button } from '@components/atoms/Button';
+import { CText } from '@components/atoms/CText';
+import { LoadingScreen } from '@components/screens/LoadingScreen';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TRootStackParamList } from '@src/AppNavigator';
-import { Button } from '@src/components/atoms/Button';
-import { CText } from '@src/components/atoms/CText';
-import { LoadingScreen } from '@src/components/screens/LoadingScreen';
 import { permissionLocationAtom } from '@src/rootState';
-import { scale, verticalScale } from '@src/utils/scale';
-import { colors, spacing } from '@src/utils/theme';
+import { scale, verticalScale } from '@utils/scale';
+import { colors, spacing } from '@utils/theme';
 import * as Location from 'expo-location';
 import { StatusBar } from 'expo-status-bar';
 import { useSetAtom } from 'jotai';

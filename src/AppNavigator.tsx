@@ -1,6 +1,6 @@
+import { LoginScreen } from '@features/login/LoginScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { LoginScreen } from '@src/features/login/LoginScreen';
 import { PermissionStatus } from 'expo-location';
 import { useAtomValue } from 'jotai';
 

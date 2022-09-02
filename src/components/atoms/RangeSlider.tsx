@@ -1,4 +1,4 @@
-import { colors, spacing } from '@src/utils/theme';
+import { colors, spacing } from '@utils/theme';
 import { memo, useCallback } from 'react';
 import { View, StyleSheet, StyleProp } from 'react-native';
 import Slider from 'rn-range-slider';

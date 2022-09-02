@@ -1,10 +1,10 @@
-import { Button } from '@src/components/atoms/Button';
-import { CText } from '@src/components/atoms/CText';
-import { IconProfilePicture } from '@src/components/icons/ProfilePicture';
+import { Button } from '@components/atoms/Button';
+import { CText } from '@components/atoms/CText';
+import { IconProfilePicture } from '@components/icons/ProfilePicture';
 import { userAtom } from '@src/rootState';
-import { i18n } from '@src/utils/i18n';
-import { verticalScale } from '@src/utils/scale';
-import { spacing } from '@src/utils/theme';
+import { i18n } from '@utils/i18n';
+import { verticalScale } from '@utils/scale';
+import { spacing } from '@utils/theme';
 import * as ImagePicker from 'expo-image-picker';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { Image, StyleSheet, View } from 'react-native';

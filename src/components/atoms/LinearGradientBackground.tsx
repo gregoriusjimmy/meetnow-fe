@@ -1,4 +1,4 @@
-import { colors } from '@src/utils/theme';
+import { colors } from '@utils/theme';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet } from 'react-native';
 

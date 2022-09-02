@@ -1,7 +1,7 @@
+import { CText } from '@components/atoms/CText';
 import { useFocusEffect } from '@react-navigation/native';
-import { CText } from '@src/components/atoms/CText';
-import { verticalScale } from '@src/utils/scale';
-import { colors, spacing } from '@src/utils/theme';
+import { verticalScale } from '@utils/scale';
+import { colors, spacing } from '@utils/theme';
 import { StatusBar } from 'expo-status-bar';
 import { memo, ReactNode, useCallback, useRef, useState } from 'react';
 import { Pressable, StyleSheet, TextInput, View, ViewStyle, TouchableOpacity } from 'react-native';

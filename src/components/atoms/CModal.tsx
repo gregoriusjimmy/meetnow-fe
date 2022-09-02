@@ -1,4 +1,4 @@
-import { colors } from '@src/utils/theme';
+import { colors } from '@utils/theme';
 import { forwardRef } from 'react';
 import { Modal, ModalProps, Pressable, StyleSheet } from 'react-native';
 
