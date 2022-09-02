@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TRootStackParamList } from '@src/AppNavigator';
 import { useAuth } from '@src/hooks/useAuth';
+import { i18n } from '@src/utils/i18n';
 import { spacing } from '@src/utils/theme';
 import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, View } from 'react-native';
@@ -32,7 +33,7 @@ export function LoginScreen() {
           Sign in with google
         </Button> */}
         <Button variant="neutral" size="l" onPress={() => navigation.navigate('InputPhoneNumber')}>
-          Sign in with phone number
+          {i18n.t('login_signin_with_phone_number')}
         </Button>
       </View>
     </View>
