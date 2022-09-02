@@ -1,0 +1,12 @@
+{
+  "en": {
+    "enable_location_title": "Enable Location",
+    "enable_location_message": "You’ll need to enable location in order to use Meetnow",
+    "enable_location_allow_location": "ALLOW LOCATION"
+  },
+  "id": {
+    "enable_location_title": "Mengizinkan Lokasi",
+    "enable_location_message": "Anda harus mengizinkan akses lokasi untuk dapat menggunakan Meetnow",
+    "enable_location_allow_location": "IZINKAN LOKASI"
+  }
+}

@@ -3,6 +3,7 @@ import { Button } from '@components/atoms/Button';
 import { CText } from '@components/atoms/CText';
 import { LinearGradientBackground } from '@components/atoms/LinearGradientBackground';
 import { permissionLocationAtom } from '@src/rootState';
+import { i18n } from '@src/utils/i18n';
 import { spacing } from '@src/utils/theme';
 import * as Location from 'expo-location';
 import { StatusBar } from 'expo-status-bar';
@@ -27,13 +28,13 @@ export function EnableLocationScreen() {
       <Image source={GpsImage} style={styles.image} />
       <View style={styles.content}>
         <CText color="light" variant="h3Bold">
-          Enable Location
+          {i18n.t('enable_location_title')}
         </CText>
         <CText color="light" style={styles.subtitle} variant="subtitle">
-          You’ll need to enable location in order to use Meetnow
+          {i18n.t('enable_location_message')}
         </CText>
         <Button variant="neutral" size="l" onPress={handleBtnPress}>
-          ALLOW LOCATION
+          {i18n.t('enable_location_allow_location')}
         </Button>
         {/* TODO: add learn more button to show modal */}
       </View>
