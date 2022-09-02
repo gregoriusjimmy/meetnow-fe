@@ -47,7 +47,7 @@ export function UploadProfilePictureScreen() {
     return photo ? (
       <Image source={{ uri: 'data:image/jpeg;base64,' + photo }} style={styles.profileImage} />
     ) : (
-      <IconProfilePicture />
+      <IconProfilePicture width={verticalScale(160)} height={verticalScale(160)} />
     );
   };
 
