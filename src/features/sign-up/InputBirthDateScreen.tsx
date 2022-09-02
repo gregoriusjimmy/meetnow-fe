@@ -4,6 +4,7 @@ import { TRootStackParamList } from '@src/AppNavigator';
 import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
 import { InputField } from '@src/components/atoms/InputField';
+import { i18n } from '@src/utils/i18n';
 import { scale } from '@src/utils/scale';
 import { spacing } from '@src/utils/theme';
 import { useSetAtom } from 'jotai';
@@ -101,7 +102,7 @@ export function InputBirthDateScreen() {
   return (
     <SignUpContainer>
       <SignUpStepper currentStep={3} />
-      <CText variant="h2Medium">When is your birthday?</CText>
+      <CText variant="h2Medium">{i18n.t('sign_up_birthdate_question')}</CText>
       <View style={styles.content}>
         <InputField
           value={day}
@@ -146,7 +147,7 @@ export function InputBirthDateScreen() {
         variant="primary"
         size="l"
         onPress={handlePressContinue}>
-        Continue
+        {i18n.t('sign_up_continue')}
       </Button>
     </SignUpContainer>
   );

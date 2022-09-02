@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TRootStackParamList } from '@src/AppNavigator';
 import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
+import { i18n } from '@src/utils/i18n';
 import { spacing } from '@src/utils/theme';
 import { useAtomValue } from 'jotai';
 import { useState } from 'react';
@@ -33,14 +34,14 @@ export function InputOTPScreen() {
   return (
     <SignUpContainer>
       <CText style={styles.title} variant="h2Medium">
-        Enter code
+        {i18n.t('sign_up_enter_code')}
       </CText>
       <View style={styles.resendContainer}>
         <CText variant="subtitle" style={styles.phoneNumber}>
           {phoneNumber || '+6289392838'}
         </CText>
         <Button variant="primary-outline" size="s">
-          Resend
+          {i18n.t('sign_up_resend')}
         </Button>
       </View>
       <OTPInput code={code} maximumLength={CODE_LENGTH} onChangeCode={handleChangeCode} />
@@ -50,7 +51,7 @@ export function InputOTPScreen() {
         variant="primary"
         size="l"
         onPress={() => navigation.push('InputName')}>
-        Continue
+        {i18n.t('sign_up_continue')}
       </Button>
     </SignUpContainer>
   );

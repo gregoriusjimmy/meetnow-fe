@@ -2,6 +2,7 @@ import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
 import { IconProfilePicture } from '@src/components/icons/ProfilePicture';
 import { userAtom } from '@src/rootState';
+import { i18n } from '@src/utils/i18n';
 import { verticalScale } from '@src/utils/scale';
 import { spacing } from '@src/utils/theme';
 import * as ImagePicker from 'expo-image-picker';
@@ -57,7 +58,7 @@ export function UploadProfilePictureScreen() {
   return (
     <SignUpContainer>
       <SignUpStepper currentStep={7} />
-      <CText variant="h2Medium">Upload your profile picture</CText>
+      <CText variant="h2Medium">{i18n.t('sign_up_upload_profile_question')}</CText>
       <View style={styles.content}>
         {renderProfilePicture()}
         <View style={styles.actions}>
@@ -66,15 +67,15 @@ export function UploadProfilePictureScreen() {
             variant="primary-outline"
             size="l"
             onPress={handleOpenCamera}>
-            Open camera
+            {i18n.t('sign_up_open_camera')}
           </Button>
           <Button variant="primary-outline" size="l" onPress={handleOpenMediaLib}>
-            Choose photo from phone
+            {i18n.t('sign_up_choose_photo_phone')}
           </Button>
         </View>
       </View>
       <Button disabled={!photo} variant="primary" size="l" onPress={handlePressFinish}>
-        Finish
+        {i18n.t('sign_up_finish')}
       </Button>
     </SignUpContainer>
   );

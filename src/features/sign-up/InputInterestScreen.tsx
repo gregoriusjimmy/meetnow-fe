@@ -4,6 +4,7 @@ import { TRootStackParamList } from '@src/AppNavigator';
 import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
 import { InputField } from '@src/components/atoms/InputField';
+import { i18n } from '@src/utils/i18n';
 import { spacing } from '@src/utils/theme';
 import { useAtom } from 'jotai';
 import { useState } from 'react';
@@ -38,7 +39,7 @@ export function InputInterestsScreen() {
   return (
     <SignUpContainer>
       <SignUpStepper currentStep={6} />
-      <CText variant="h2Medium">What makes you feel excited?</CText>
+      <CText variant="h2Medium">{i18n.t('sign_up_interest_question')}</CText>
       <View style={styles.content}>
         <View
           style={{
@@ -56,7 +57,7 @@ export function InputInterestsScreen() {
           <InputField
             blurOnSubmit={false}
             autoFocus
-            placeholder="Interest"
+            placeholder={i18n.t('sign_up_interest_placeholder')}
             maxLength={30}
             value={inputInterest}
             onChangeText={(val) => setInputInterest(val)}
@@ -64,17 +65,17 @@ export function InputInterestsScreen() {
             style={{ flexGrow: 1 }}
           />
           <Button onPress={handleAddInterest} variant="primary" size={'s'}>
-            Add
+            {i18n.t('sign_up_add')}
           </Button>
         </View>
-        <CText variant="p">You can add up to 5</CText>
+        <CText variant="p">{i18n.t('sign_up_interest_message')}</CText>
       </View>
       <Button
         disabled={interests.length < 1 || interests.length > 5}
         variant="primary"
         size="l"
         onPress={handlePressContinue}>
-        Continue
+        {i18n.t('sign_up_continue')}
       </Button>
     </SignUpContainer>
   );

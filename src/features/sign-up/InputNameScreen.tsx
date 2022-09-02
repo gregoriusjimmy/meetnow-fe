@@ -4,6 +4,7 @@ import { TRootStackParamList } from '@src/AppNavigator';
 import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
 import { InputField } from '@src/components/atoms/InputField';
+import { i18n } from '@src/utils/i18n';
 import { spacing } from '@src/utils/theme';
 import { useAtom } from 'jotai';
 import { useRef, useState } from 'react';
@@ -33,7 +34,7 @@ export function InputNameScreen() {
 
   const handlePressContinue = () => {
     if (firstName.length < 3) {
-      setErrorFirstName(`First name cannot less than 3 characters`);
+      setErrorFirstName(i18n.t('sign_up_first_name_min_error'));
       return;
     }
     setErrorFirstName('');
@@ -45,14 +46,14 @@ export function InputNameScreen() {
   return (
     <SignUpContainer>
       <SignUpStepper currentStep={1} />
-      <CText variant="h2Medium">What is your name?</CText>
+      <CText variant="h2Medium">{i18n.t('sign_up_name_question')}</CText>
       <View style={styles.content}>
         <InputField
           value={firstName}
           onChangeText={handleChangeFirstName}
           autoFocus
           style={styles.firstNameInput}
-          placeholder="First Name"
+          placeholder={i18n.t('sign_up_first_name_placeholder')}
           onSubmitEditing={() => lastNameInputRef.current?.focus()}
           blurOnSubmit={false}
           maxLength={20}
@@ -64,7 +65,7 @@ export function InputNameScreen() {
           ref={lastNameInputRef}
           value={lastName}
           onChangeText={handleChangeLastName}
-          placeholder="Last Name"
+          placeholder={i18n.t('sign_up_last_name_placeholder')}
           autoComplete={'name-suffix'}
         />
       </View>
@@ -73,7 +74,7 @@ export function InputNameScreen() {
         variant="primary"
         size="l"
         onPress={handlePressContinue}>
-        Continue
+        {i18n.t('sign_up_continue')}
       </Button>
     </SignUpContainer>
   );

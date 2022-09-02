@@ -4,6 +4,7 @@ import { TRootStackParamList } from '@src/AppNavigator';
 import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
 import { InputField } from '@src/components/atoms/InputField';
+import { i18n } from '@src/utils/i18n';
 import { spacing } from '@src/utils/theme';
 import { useAtom } from 'jotai';
 import { useState } from 'react';
@@ -28,7 +29,7 @@ export function InputInstagramUsernameScreen() {
 
   const handlePressContinue = () => {
     if (username.length < 3) {
-      setErrorUsername(`Username cannot less than 3 characters`);
+      setErrorUsername(i18n.t('sign_up_instagram_username_min_error'));
       return;
     }
     setErrorUsername('');
@@ -38,7 +39,7 @@ export function InputInstagramUsernameScreen() {
   return (
     <SignUpContainer>
       <SignUpStepper currentStep={5} />
-      <CText variant="h2Medium">What is your instagram's username?</CText>
+      <CText variant="h2Medium">{i18n.t('sign_up_instagram_question')}</CText>
       <View style={styles.content}>
         <InputField
           value={username}
@@ -50,11 +51,11 @@ export function InputInstagramUsernameScreen() {
           error={errorUsername}
         />
         <CText variant="p" style={{ marginTop: spacing[4] }}>
-          This will be used to communicate with your new mate to arrange the meeting location.
+          {i18n.t('sign_up_instagram_message')}
         </CText>
       </View>
       <Button disabled={!username} variant="primary" size="l" onPress={handlePressContinue}>
-        Continue
+        {i18n.t('sign_up_continue')}
       </Button>
     </SignUpContainer>
   );

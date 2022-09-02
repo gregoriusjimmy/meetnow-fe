@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TRootStackParamList } from '@src/AppNavigator';
 import { Button } from '@src/components/atoms/Button';
 import { CText } from '@src/components/atoms/CText';
+import { i18n } from '@src/utils/i18n';
 import { spacing } from '@src/utils/theme';
 import { useAtom } from 'jotai';
 import { StyleSheet, View } from 'react-native';
@@ -26,24 +27,24 @@ export function InputGenderScreen() {
   return (
     <SignUpContainer>
       <SignUpStepper currentStep={4} />
-      <CText variant="h2Medium">What is your gender?</CText>
+      <CText variant="h2Medium">{i18n.t('sign_up_gender_question')}</CText>
       <View style={styles.content}>
         <Button
           style={styles.firstBtn}
           variant={gender === 'male' ? 'primary-outline' : 'neutral-outline'}
           size="l"
           onPress={() => setGender('male')}>
-          I'm a Male
+          {i18n.t('sign_up_gender_male_choice')}
         </Button>
         <Button
           variant={gender === 'female' ? 'secondary-outline' : 'neutral-outline'}
           size="l"
           onPress={() => setGender('female')}>
-          I'm a Female
+          {i18n.t('sign_up_gender_female_choice')}
         </Button>
       </View>
       <Button disabled={!gender} variant="primary" size="l" onPress={handlePressContinue}>
-        Continue
+        {i18n.t('sign_up_continue')}
       </Button>
     </SignUpContainer>
   );
