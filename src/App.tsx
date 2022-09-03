@@ -12,6 +12,7 @@ import { AppNavigator } from './AppNavigator';
 import { useAuth } from './hooks/useAuth';
 import { permissionLocationAtom } from './rootState';
 import { i18n } from './utils/i18n';
+import './configs/axiosConfig';
 
 i18n.locale = Localization.locale;
 i18n.enableFallback = true;
