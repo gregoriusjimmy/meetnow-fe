@@ -1,7 +1,7 @@
 import { colors, spacing } from '@utils/theme';
 import { memo, useCallback } from 'react';
 import { View, StyleSheet, StyleProp } from 'react-native';
-import Slider from 'rn-range-slider';
+import Slider from 'range-slider-react-native';
 
 const Rail = memo(() => {
   return <View style={railStyles.root} />;
