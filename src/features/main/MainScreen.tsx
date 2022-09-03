@@ -2,15 +2,14 @@ import ImgWomanAndMan from '@assets/images/woman-man-2.png';
 import { Button } from '@components/atoms/Button';
 import { CText } from '@components/atoms/CText';
 import { LoadingScreen } from '@components/screens/LoadingScreen';
+import { useLocation } from '@hooks/useLocation';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TRootStackParamList } from '@src/AppNavigator';
-import { permissionLocationAtom } from '@src/rootState';
 import { scale, verticalScale } from '@utils/scale';
 import { colors, spacing } from '@utils/theme';
 import * as Location from 'expo-location';
 import { StatusBar } from 'expo-status-bar';
-import { useSetAtom } from 'jotai';
 import { useState, useCallback } from 'react';
 import { Image, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -39,28 +38,25 @@ export function MainScreen() {
 
   const [openModalDistance, setOpenModalDistance] = useState(false);
   const [selectedDistance, setSelectedDistance] = useState(20);
-
+  const location = useLocation();
   const navigation = useNavigation<TMainScreenNavigationProp>();
-  const setPermissionLocation = useSetAtom(permissionLocationAtom);
 
   useFocusEffect(
     useCallback(() => {
-      const getCurrentLocation = async () => {
+      const getCurrentStreet = async () => {
+        if (!location.coords) return;
         try {
           setIsLoading(true);
-          const { coords } = await Location.getCurrentPositionAsync();
-          const address = await Location.reverseGeocodeAsync(coords);
+          const address = await Location.reverseGeocodeAsync(location.coords);
           const { street, district, city, subregion, region } = address[0];
           setCurrentStreet(street ?? district ?? city ?? subregion ?? region ?? 'Undefined');
           setIsLoading(false);
         } catch (error) {
           console.warn(error);
-          // block user for accessing the app
-          setPermissionLocation(null);
         }
       };
-      getCurrentLocation();
-    }, [])
+      getCurrentStreet();
+    }, [location.coords])
   );
 
   const handlePressSearch = () => {
