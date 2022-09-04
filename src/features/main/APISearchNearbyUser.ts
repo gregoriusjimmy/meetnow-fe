@@ -1,15 +1,17 @@
 import { usePost } from '@hooks/usePost';
 
+export type TMatchedUser = {
+  firstName: string;
+  lastName: string;
+  nickname: string;
+  interests: string[];
+  gender: 'male' | 'female';
+  instagramUsername: string;
+  age: number;
+};
+
 export type TSearchNearbyUserRes = {
-  matchedUser: {
-    firstName: string;
-    lastName: string;
-    nickname: string;
-    interests: string[];
-    gender: 'MALE' | 'FEMALE';
-    instagramUsername: string;
-    age: number;
-  };
+  matchedUser: TMatchedUser;
 };
 
 export type TSearchNearbyUserSpec = {
