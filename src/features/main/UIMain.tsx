@@ -205,11 +205,11 @@ const modalCriteriaGenderStyles = StyleSheet.create({
   text: { marginTop: spacing[4] },
 });
 
-export const InterestBadge = () => {
+export const InterestBadge = ({ interest }: { interest: string }) => {
   return (
     <View style={interestBadgeStyles.container}>
       <CText variant="p" style={interestBadgeStyles.text}>
-        Berenang
+        {interest}
       </CText>
     </View>
   );
