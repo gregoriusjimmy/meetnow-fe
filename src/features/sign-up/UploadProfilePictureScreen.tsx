@@ -1,14 +1,17 @@
 import { Button } from '@components/atoms/Button';
 import { CText } from '@components/atoms/CText';
 import { IconProfilePicture } from '@components/icons/ProfilePicture';
+import { LoadingScreen } from '@components/screens/LoadingScreen';
 import { userAtom } from '@src/rootState';
 import { i18n } from '@utils/i18n';
 import { verticalScale } from '@utils/scale';
 import { spacing } from '@utils/theme';
 import * as ImagePicker from 'expo-image-picker';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { useState } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
+import { usePostCreateSearcher } from './APICreateSearcher';
 import { SignUpContainer, SignUpStepper } from './UISignUp';
 import { photoAtom, signUpFormAtom } from './atoms';
 
@@ -25,7 +28,9 @@ export function UploadProfilePictureScreen() {
   const [statusMediaLib, requestPermissionMediaLib] = ImagePicker.useMediaLibraryPermissions();
   const signUpFormData = useAtomValue(signUpFormAtom);
   const [photo, setPhoto] = useAtom(photoAtom);
+  const [isLoading, setIsLoading] = useState(false);
   const setUser = useSetAtom(userAtom);
+  const postCreateSearcher = usePostCreateSearcher();
 
   const handleOpenCamera = async () => {
     if (!statusCamera?.granted) await requestPermissionCamera();
@@ -51,9 +56,24 @@ export function UploadProfilePictureScreen() {
     );
   };
 
-  const handlePressFinish = () => {
-    setUser({ ...signUpFormData });
+  const handlePressFinish = async () => {
+    try {
+      setIsLoading(true);
+      const { birthDate, gender } = signUpFormData;
+      const res = await postCreateSearcher({
+        ...signUpFormData,
+        birthdate: birthDate!,
+        gender: gender!,
+      });
+      if (res.id) setUser({ userId: res.id, matched: false });
+    } catch (error) {
+      console.warn(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
+
+  if (isLoading) return <LoadingScreen />;
 
   return (
     <SignUpContainer>
