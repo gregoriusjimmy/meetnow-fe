@@ -5,55 +5,51 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TRootStackParamList } from '@src/AppNavigator';
 import { i18n } from '@utils/i18n';
-import { useAtom, useAtomValue } from 'jotai';
-import { useEffect, useState } from 'react';
+import { useAtom } from 'jotai';
+import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { SignUpContainer, SignUpStepper } from './UISignUp';
-import { firstNameAtom, nicknameAtom } from './atoms';
+import { nicknameAtom } from './atoms';
 
-type TInputNicknameScreenNavigationProp = NativeStackNavigationProp<
+type TInputUsernameScreenNavigationProp = NativeStackNavigationProp<
   TRootStackParamList,
-  'InputNickname'
+  'InputUsername'
 >;
 
-export function InputNicknameScreen() {
-  const navigation = useNavigation<TInputNicknameScreenNavigationProp>();
+export function InputUsernameScreen() {
+  //TODO: refactor nickname to be username
+  const navigation = useNavigation<TInputUsernameScreenNavigationProp>();
   const [nickname, setNickname] = useAtom(nicknameAtom);
-  const firstName = useAtomValue(firstNameAtom);
-  const [errorNickname, setErrorNickname] = useState('');
+  const [errorUsername, setErrorUsername] = useState('');
 
-  useEffect(() => {
-    !nickname && setNickname(firstName);
-  }, []);
-
-  const handleChangeNickname = (val: string) => {
+  const handleChangeUsername = (val: string) => {
     if (/[\s\d\W]/.test(val)) return;
     setNickname(val);
   };
 
   const handlePressContinue = () => {
     if (nickname.length < 3) {
-      setErrorNickname(i18n.t('sign_up_nickname_min_error'));
+      setErrorUsername(i18n.t('sign_up_username_min_error'));
       return;
     }
-    setErrorNickname('');
+    setErrorUsername('');
     navigation.push('InputBirthDate');
   };
 
   return (
     <SignUpContainer>
       <SignUpStepper currentStep={2} />
-      <CText variant="h2Medium">{i18n.t('sign_up_nickname_question')}</CText>
+      <CText variant="h2Medium">{i18n.t('sign_up_username_question')}</CText>
       <View style={styles.content}>
         <InputField
           value={nickname}
-          onChangeText={handleChangeNickname}
+          onChangeText={handleChangeUsername}
           autoFocus
-          placeholder={i18n.t('sign_up_nickname_placeholder')}
+          placeholder={i18n.t('sign_up_username_placeholder')}
           maxLength={10}
           autoComplete={'name'}
-          error={errorNickname}
+          error={errorUsername}
         />
       </View>
       <Button disabled={!nickname} variant="primary" size="l" onPress={handlePressContinue}>
