@@ -1,4 +1,5 @@
 import { LoginScreen } from '@features/login/LoginScreen';
+import { MateMetScreen } from '@features/main/MateMetScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { PermissionStatus } from 'expo-location';
@@ -15,9 +16,9 @@ import { InputGenderScreen } from './features/sign-up/InputGenderScreen';
 import { InputInstagramUsernameScreen } from './features/sign-up/InputInstagranUsername';
 import { InputInterestsScreen } from './features/sign-up/InputInterestScreen';
 import { InputNameScreen } from './features/sign-up/InputNameScreen';
-import { InputNicknameScreen } from './features/sign-up/InputNicknameScreen';
 import { InputOTPScreen } from './features/sign-up/InputOTPScreen';
 import { InputPhoneNumberScreen } from './features/sign-up/InputPhoneNumberScreen';
+import { InputUsernameScreen } from './features/sign-up/InputUsernameScreen';
 import { UploadProfilePictureScreen } from './features/sign-up/UploadProfilePictureScreen';
 import { isLoadingAuthAtom, permissionLocationAtom, userAtom } from './rootState';
 
@@ -28,7 +29,7 @@ export type TRootStackParamList = {
   InputPhoneNumber: undefined;
   InputOTP: undefined;
   InputName: undefined;
-  InputNickname: undefined;
+  InputUsername: undefined;
   InputBirthDate: undefined;
   InputGender: undefined;
   InputInstagramUsername: undefined;
@@ -38,6 +39,7 @@ export type TRootStackParamList = {
   SearchMate: undefined;
   Matched: undefined;
   NavigateMate: undefined;
+  MateMet: undefined;
 };
 
 const Stack = createNativeStackNavigator<TRootStackParamList>();
@@ -72,6 +74,7 @@ export const AppNavigator = () => {
             <>
               <Stack.Screen name="Matched" component={MatchedScreen} />
               <Stack.Screen name="NavigateMate" component={NavigateMateScreen} />
+              <Stack.Screen name="MateMet" component={MateMetScreen} />
             </>
           )}
         </Stack.Group>
@@ -86,7 +89,7 @@ export const AppNavigator = () => {
             <Stack.Screen name="InputPhoneNumber" component={InputPhoneNumberScreen} />
             <Stack.Screen name="InputOTP" component={InputOTPScreen} />
             <Stack.Screen name="InputName" component={InputNameScreen} />
-            <Stack.Screen name="InputNickname" component={InputNicknameScreen} />
+            <Stack.Screen name="InputUsername" component={InputUsernameScreen} />
             <Stack.Screen name="InputBirthDate" component={InputBirthDateScreen} />
             <Stack.Screen name="InputGender" component={InputGenderScreen} />
             <Stack.Screen name="InputInstagramUsername" component={InputInstagramUsernameScreen} />
