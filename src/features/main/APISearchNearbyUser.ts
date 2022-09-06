@@ -8,6 +8,11 @@ export type TMatchedUser = {
   gender: 'male' | 'female';
   instagramUsername: string;
   age: number;
+  distance: number;
+  coordinate: {
+    lat: number;
+    long: number;
+  };
 };
 
 export type TSearchNearbyUserRes = {
@@ -15,18 +20,7 @@ export type TSearchNearbyUserRes = {
 };
 
 export type TSearchNearbyUserSpec = {
-  firstName: string;
-  lastName: string;
-  nickname: string;
-  birthdate: {
-    year: number;
-    month: number;
-    day: number;
-  };
-  gender: 'male' | 'female';
-  instagramUsername: string;
-  interests: string[];
-  phoneNumber: string;
+  userId: number;
   coordinate: {
     lat: number;
     long: number;
