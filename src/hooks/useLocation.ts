@@ -25,7 +25,7 @@ export function useLocation() {
   }, []);
 
   return {
-    isLoading,
+    isCoordsLoading: isLoading,
     coords,
   };
 }
