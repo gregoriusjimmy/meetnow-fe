@@ -18,7 +18,6 @@ import Animated, {
 
 import { usePostSearchNearbyUser } from './APISearchNearbyUser';
 import { matchedUserAtom } from './atom';
-
 type TSearchMateScreenNavigationProp = NativeStackNavigationProp<TRootStackParamList, 'SearchMate'>;
 
 export const SearchMateScreen = () => {
@@ -27,7 +26,7 @@ export const SearchMateScreen = () => {
   const setMatchedUser = useSetAtom(matchedUserAtom);
   const [user, setUser] = useAtom(userAtom);
   const postSearchNearbyUser = usePostSearchNearbyUser();
-  const controller = new AbortController();
+
   const { coords } = useLocation();
 
   const duckAnimationStyle = useAnimatedStyle(() => {
@@ -42,23 +41,29 @@ export const SearchMateScreen = () => {
 
   useEffect(() => {
     const fetchSearchNearbyUser = async () => {
-      if (!coords) return;
+      if (!coords || !user) return;
       try {
         const res = await postSearchNearbyUser(
           {
-            ...user,
-            birthdate: user.birthDate,
+            userId: user.userId,
             coordinate: { lat: coords.latitude, long: coords.longitude },
           },
           {
             timeout: 30000,
-            signal: controller.signal,
           }
         );
-        controller.abort();
         if (res.matchedUser) {
           setUser({ ...user, matched: true });
-          setMatchedUser({ ...res.matchedUser, coordinate: { lat: -6.29869, long: 106.892776 } });
+          // TODO: re check API distance n coordinate to be number by default
+          setMatchedUser({
+            ...res.matchedUser,
+            distance: Number(res.matchedUser.distance),
+            coordinate: {
+              lat: Number(res.matchedUser.coordinate.lat),
+              long: Number(res.matchedUser.coordinate.long),
+            },
+          });
+          return;
         }
       } catch (error) {
         console.warn(error);
@@ -84,7 +89,6 @@ export const SearchMateScreen = () => {
               text: 'Leave',
               style: 'destructive',
               onPress: () => {
-                controller.abort();
                 navigation.dispatch(e.data.action);
               },
             },
