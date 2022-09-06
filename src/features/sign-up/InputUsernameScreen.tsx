@@ -24,7 +24,8 @@ export function InputUsernameScreen() {
   const [errorUsername, setErrorUsername] = useState('');
 
   const handleChangeUsername = (val: string) => {
-    if (/[\s\d\W]/.test(val)) return;
+    //TODO: Add username validation
+    // if (/[\s\d\W]/.test(val)) return;
     setNickname(val);
   };
 
