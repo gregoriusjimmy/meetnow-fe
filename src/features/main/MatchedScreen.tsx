@@ -2,6 +2,7 @@ import ImgFemaleArrived from '@assets/images/female-arrived.png';
 import ImgMaleArrived from '@assets/images/male-arrived.png';
 import { Button } from '@components/atoms/Button';
 import { CTEXT, CText } from '@components/atoms/CText';
+import { LoadingScreen } from '@components/screens/LoadingScreen';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -21,17 +22,26 @@ type TMatchedScreenNavigationProp = NativeStackNavigationProp<TRootStackParamLis
 export const MatchedScreen = () => {
   const navigation = useNavigation<TMatchedScreenNavigationProp>();
   const matchedUser = useAtomValue(matchedUserAtom);
-  if (!matchedUser) return;
+  if (!matchedUser) return <LoadingScreen />;
 
   const renderGenderImg = () => {
     if (matchedUser.gender === 'male')
       return <Image source={ImgMaleArrived} style={styles.image} />;
     return <Image source={ImgFemaleArrived} style={styles.image} />;
   };
+
   const renderGenderIcon = () => {
     if (matchedUser.gender === 'male')
       return <Ionicons name="male" size={CTEXT.fontSize.h3} color={colors.brand.primary} />;
     return <Ionicons name="female" size={CTEXT.fontSize.h3} color={colors.brand.secondary} />;
+  };
+
+  const renderDistanceText = (): string => {
+    if (matchedUser.distance < 1) {
+      const distanceInMeter = matchedUser.distance * 1000;
+      return `${Math.round(distanceInMeter)}m`;
+    }
+    return `${Math.round(matchedUser.distance)}km`;
   };
 
   const handleDeclineMeet = () => {
@@ -50,12 +60,12 @@ export const MatchedScreen = () => {
           <View style={styles.imageContainer}>{renderGenderImg()}</View>
           <View style={styles.bio}>
             <View style={styles.bioLeft}>
-              <CText variant="h3Medium" style={styles.nicknameText}>
-                {matchedUser?.nickname}
+              <CText variant="h3Medium" style={styles.nameText}>
+                {matchedUser?.firstName}
               </CText>
               {renderGenderIcon()}
               <CText style={styles.distanceText} variant="caption" color={'gray'}>
-                1km
+                {renderDistanceText()}
               </CText>
             </View>
             <CText variant="h3Medium">{matchedUser.age.toString()}</CText>
@@ -117,7 +127,7 @@ const styles = StyleSheet.create({
   interests: { flexDirection: 'row', flexWrap: 'wrap' },
   bio: { flexDirection: 'row', width: '100%', justifyContent: 'space-between' },
   bioLeft: { flexDirection: 'row', alignItems: 'baseline' },
-  nicknameText: { marginRight: spacing[4] },
+  nameText: { marginRight: spacing[4] },
   distanceText: { marginLeft: spacing[4] },
   ctaSection: {
     width: '100%',
