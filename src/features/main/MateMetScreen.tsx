@@ -10,6 +10,7 @@ import { spacing } from '@utils/theme';
 import * as ImageManipulator from 'expo-image-manipulator';
 import * as ImagePicker from 'expo-image-picker';
 import * as Sharing from 'expo-sharing';
+import { StatusBar } from 'expo-status-bar';
 import { useAtom } from 'jotai';
 import { useState } from 'react';
 import { Alert, Image, View } from 'react-native';
@@ -77,6 +78,7 @@ export const MateMetScreen = () => {
   };
   return (
     <SafeAreaView style={{ paddingHorizontal: spacing.layout, flex: 1 }}>
+      <StatusBar backgroundColor="transparent" translucent />
       <View style={{ marginTop: verticalScale(spacing[16]), flex: 0.9, alignItems: 'center' }}>
         <View style={{ width: '100%', alignItems: 'center', flex: 0.8 }}>
           <CText variant="h3Medium" style={{ textAlign: 'center' }}>

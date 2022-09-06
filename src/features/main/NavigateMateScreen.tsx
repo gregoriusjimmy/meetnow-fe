@@ -55,7 +55,7 @@ export const NavigateMateScreen = () => {
       });
     }, 1000);
     setIsLoading(false);
-  }, [coords, isMapReady, isLoading]);
+  }, [coords, isMapReady, mapRef]);
 
   if (isLoading || !matchedUser || !coords) return <LoadingScreen />;
 
