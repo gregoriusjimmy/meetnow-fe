@@ -10,7 +10,7 @@ import { scale, verticalScale } from '@utils/scale';
 import { colors, spacing } from '@utils/theme';
 import * as Location from 'expo-location';
 import { StatusBar } from 'expo-status-bar';
-import { useState, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Image, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -41,23 +41,21 @@ export function MainScreen() {
   const location = useLocation();
   const navigation = useNavigation<TMainScreenNavigationProp>();
 
-  useFocusEffect(
-    useCallback(() => {
-      const getCurrentStreet = async () => {
-        if (!location.coords) return;
-        try {
-          setIsLoading(true);
-          const address = await Location.reverseGeocodeAsync(location.coords);
-          const { street, district, city, subregion, region } = address[0];
-          setCurrentStreet(street ?? district ?? city ?? subregion ?? region ?? 'Undefined');
-          setIsLoading(false);
-        } catch (error) {
-          console.warn(error);
-        }
-      };
-      getCurrentStreet();
-    }, [location.coords])
-  );
+  useEffect(() => {
+    const getCurrentStreet = async () => {
+      if (!location.coords) return;
+      try {
+        setIsLoading(true);
+        const address = await Location.reverseGeocodeAsync(location.coords);
+        const { street, district, city, subregion, region } = address[0];
+        setCurrentStreet(street ?? district ?? city ?? subregion ?? region ?? 'Undefined');
+        setIsLoading(false);
+      } catch (error) {
+        console.warn(error);
+      }
+    };
+    getCurrentStreet();
+  }, [location.coords]);
 
   const handlePressSearch = () => {
     navigation.navigate('SearchMate');
