@@ -4,8 +4,6 @@
     "slug": "meetnow",
     "scheme": "meetnow",
     "owner": "meetnow",
-    "currentFullName": "meetnow/meetnow",
-    "originalFullName": "meetnow/meetnow",
     "version": "1.0.0",
     "jsEngine": "hermes",
     "orientation": "portrait",
@@ -30,12 +28,13 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.gregoriusjimmy.meetnow"
+      "package": "com.gregoriusjimmy.meetnow",
+      "config": { "googleMaps": { "apiKey": "AIzaSyC_OirtNMMbfcTGgQRwRK4xcbBI5EPR0Ak" } }
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
-    "plugins": [["expo-image-picker"]],
+    "plugins": ["expo-image-picker"],
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
