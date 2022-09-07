@@ -99,9 +99,9 @@ export const MateMetScreen = () => {
             variant="primary-text"
             size="s"
             onPress={() => {
-              Alert.alert(`${matchedUser.nickname} has been added to your friend lists`);
+              Alert.alert(`@${matchedUser.nickname} has been added to your friend lists`);
             }}>
-            {`Add ${matchedUser.nickname} to your friend lists?`}
+            {`Add @${matchedUser.nickname} to your friend lists?`}
           </Button>
         </View>
       </View>
