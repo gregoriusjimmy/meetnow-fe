@@ -25,9 +25,6 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.gregoriusjimmy.meetnow"
     },
-    "androidStatusBar": {
-      "translucent": true
-    },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
