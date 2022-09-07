@@ -61,7 +61,7 @@ export const NavigateMateScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="transparent" translucent />
+      <StatusBar backgroundColor="transparent" style="dark" />
       <View style={styles.mapContainer}>
         <MapView
           ref={mapRef}

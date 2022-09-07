@@ -19,7 +19,7 @@ export function LoginScreen() {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="transparent" translucent />
+      <StatusBar backgroundColor="transparent" />
       <LinearGradientBackground />
       <Image source={FullLogo} style={styles.image} />
       <View style={styles.buttons}>

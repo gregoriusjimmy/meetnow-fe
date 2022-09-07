@@ -70,7 +70,7 @@ export function MainScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar backgroundColor="transparent" translucent />
+      <StatusBar backgroundColor="transparent" style="light" />
       <ModalCriteriaAge
         handleBackdropPress={() => setOpenModalAge(false)}
         visible={openModalAge}

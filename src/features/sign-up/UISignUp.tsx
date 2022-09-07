@@ -12,7 +12,7 @@ const TOTAL_SIGN_UP_STEP = 7;
 export function SignUpContainer({ children, style }: { children: ReactNode; style?: ViewStyle }) {
   return (
     <SafeAreaView style={[signUpContainerStyles.container, style]}>
-      <StatusBar backgroundColor="transparent" translucent />
+      <StatusBar backgroundColor="transparent" style="dark" />
       {children}
     </SafeAreaView>
   );

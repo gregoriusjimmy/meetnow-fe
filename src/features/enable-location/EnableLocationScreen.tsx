@@ -24,7 +24,7 @@ export function EnableLocationScreen() {
   return (
     <View style={styles.container}>
       <LinearGradientBackground />
-      <StatusBar backgroundColor="transparent" translucent />
+      <StatusBar backgroundColor="transparent" />
       <Image source={GpsImage} style={styles.image} />
       <View style={styles.content}>
         <CText color="light" variant="h3Bold">

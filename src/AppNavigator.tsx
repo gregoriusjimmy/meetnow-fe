@@ -53,7 +53,7 @@ export const AppNavigator = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ statusBarTranslucent: true }}>
+      <Stack.Navigator>
         <Stack.Group
           screenOptions={{
             headerShown: false,

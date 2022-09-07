@@ -6,7 +6,7 @@ import { View, StyleSheet, ActivityIndicator } from 'react-native';
 export const LoadingScreen = () => {
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="transparent" translucent />
+      <StatusBar backgroundColor="transparent" />
       <ActivityIndicator color={colors.brand.primary} />
     </View>
   );

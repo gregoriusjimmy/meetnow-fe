@@ -100,7 +100,7 @@ export const SearchMateScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="transparent" translucent />
+      <StatusBar backgroundColor="transparent" style="dark" />
       <Animated.Image source={ImgBirdLoading} style={duckAnimationStyle} />
       <CText variant="subtitle">Searching your meet-mate... </CText>
     </View>

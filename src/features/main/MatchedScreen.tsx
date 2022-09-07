@@ -51,7 +51,7 @@ export const MatchedScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar backgroundColor="transparent" translucent />
+      <StatusBar backgroundColor="transparent" style="dark" />
       <CText variant="h3" style={styles.introText}>
         Yeay, we found your meet-mate!
       </CText>

@@ -78,7 +78,7 @@ export const MateMetScreen = () => {
   };
   return (
     <SafeAreaView style={{ paddingHorizontal: spacing.layout, flex: 1 }}>
-      <StatusBar backgroundColor="transparent" translucent />
+      <StatusBar backgroundColor="transparent" style="dark" />
       <View style={{ marginTop: verticalScale(spacing[16]), flex: 0.9, alignItems: 'center' }}>
         <View style={{ width: '100%', alignItems: 'center', flex: 0.8 }}>
           <CText variant="h3Medium" style={{ textAlign: 'center' }}>
