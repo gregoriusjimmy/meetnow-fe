@@ -48,7 +48,7 @@ export function InputUsernameScreen() {
           onChangeText={handleChangeUsername}
           autoFocus
           placeholder={i18n.t('sign_up_username_placeholder')}
-          maxLength={10}
+          maxLength={30}
           autoComplete={'name'}
           error={errorUsername}
         />

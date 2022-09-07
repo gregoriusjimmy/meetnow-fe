@@ -40,6 +40,9 @@ export function InputInstagramUsernameScreen() {
     <SignUpContainer>
       <SignUpStepper currentStep={5} />
       <CText variant="h2Medium">{i18n.t('sign_up_instagram_question')}</CText>
+      <CText variant="p" style={{ marginTop: spacing[4] }}>
+        {i18n.t('sign_up_instagram_message')}
+      </CText>
       <View style={styles.content}>
         <InputField
           value={username}
@@ -50,9 +53,6 @@ export function InputInstagramUsernameScreen() {
           autoComplete={'username'}
           error={errorUsername}
         />
-        <CText variant="p" style={{ marginTop: spacing[4] }}>
-          {i18n.t('sign_up_instagram_message')}
-        </CText>
       </View>
       <Button disabled={!username} variant="primary" size="l" onPress={handlePressContinue}>
         {i18n.t('sign_up_continue')}
